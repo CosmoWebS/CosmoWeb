@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmo — Discord Bot</title>
-    <!-- Подключаем стили для анимации скролла (AOS) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
@@ -13,6 +12,8 @@
             --accent-color: #5865F2;
             --text-main: #ffffff;
             --text-muted: #a0a5c1;
+            --discord-bg: #2f3136;
+            --discord-embed-bg: #202225;
         }
 
         body {
@@ -24,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон со звездами */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -32,11 +32,10 @@
             justify-content: center;
             text-align: center;
             padding: 80px 20px;
-            min-height: 70vh;
+            min-height: 65vh;
             background: radial-gradient(circle at center, #1b203e 0%, var(--bg-color) 70%);
         }
 
-        /* Пульсирующий анимированный логотип */
         .logo-container {
             position: relative;
             margin-bottom: 30px;
@@ -46,8 +45,8 @@
             width: 180px;
             height: 180px;
             border-radius: 50%;
-            /* Замени на путь к твоему файлу b6e63ed1-0983-4146-9f0a-ac6b5dab5670.png */
-            background-image: url('logo.png');
+            /* Твоя оригинальная картинка созвездия */
+            background-image: url('https://i.postimg.cc/9F4gZg3S/b6e63ed1-0983-4146-9f0a-ac6b5dab5670.jpg');
             background-size: cover;
             background-position: center;
             box-shadow: 0 0 30px rgba(88, 101, 242, 0.2);
@@ -108,7 +107,7 @@
             transform: translateY(-2px);
         }
 
-        /* Индикаторы статистики (Servers & Users) */
+        /* Индикаторы статистики */
         .stats-container {
             display: flex;
             justify-content: center;
@@ -130,7 +129,6 @@
 
         .stat-icon {
             font-size: 2.5rem;
-            color: var(--text-muted);
             display: flex;
             align-items: center;
         }
@@ -153,7 +151,7 @@
             color: #fff;
         }
 
-        /* Раздел команд при скролле */
+        /* Раздел команд */
         .commands-section {
             max-width: 1000px;
             margin: 0 auto;
@@ -162,19 +160,18 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 60px;
+            font-size: 2.2rem;
+            margin-bottom: 80px;
         }
 
         .command-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 50px;
-            margin-bottom: 100px;
+            gap: 60px;
+            margin-bottom: 120px;
         }
 
-        /* Меняем местами картинку и текст для шахматного порядка */
         .command-row.reverse {
             flex-direction: row-reverse;
         }
@@ -184,10 +181,11 @@
         }
 
         .command-name {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             color: var(--accent-color);
             margin-bottom: 15px;
             font-family: monospace;
+            font-weight: bold;
         }
 
         .command-desc {
@@ -196,53 +194,181 @@
             line-height: 1.6;
         }
 
-        /* Превью встроенных сообщений а-ля Дискорд */
+        /* Стилизация окон под интерфейс Дискорда */
         .command-visual {
             flex: 1;
-            background-color: #2f3136; /* Цвет темы Дискорда */
+            background-color: var(--discord-bg);
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            border-left: 4px solid var(--accent-color);
             transition: transform 0.3s ease;
+            color: #dcddde;
         }
 
         .command-visual:hover {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
-        .discord-author {
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
-
-        .discord-embed-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #00b0f4;
-        }
-
-        .discord-field {
-            margin-bottom: 10px;
-        }
-
-        .discord-field-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #fff;
-        }
-
-        .discord-field-value {
-            color: #dcddde;
-            font-size: 0.9rem;
-        }
-
-        .discord-image {
-            width: 100%;
+        /* Форма /register */
+        .discord-modal {
+            background-color: #36393f;
             border-radius: 4px;
+            padding: 15px;
+            border: 1px solid #202225;
+        }
+        .modal-header {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .modal-warning {
+            background-color: rgba(240, 154, 53, 0.1);
+            border: 1px solid #f09a35;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #f09a35;
+            margin-bottom: 12px;
+        }
+        .modal-field {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #b9bbbe;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .modal-input {
+            background-color: #202225;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            color: #dcddde;
+            margin-bottom: 12px;
+            border: 1px solid #222;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .m-btn {
+            padding: 6px 16px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+        .m-btn-sub { background-color: #5865F2; color: white; }
+
+        /* Эмбеды профилей /profile и /search */
+        .discord-embed {
+            border-left: 4px solid #43b581;
+            background-color: var(--discord-embed-bg);
+            padding: 12px;
+            border-radius: 4px;
+        }
+        .embed-title {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+        .embed-grid {
+            display: flex;
+            gap: 30px;
+            margin: 8px 0;
+        }
+        .embed-label {
+            font-weight: bold;
+            color: #fff;
+            font-size: 0.85rem;
+        }
+        .embed-val { font-size: 0.85rem; color: #dcddde; }
+        .plays-box {
+            background-color: #2f3136;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid #202225;
+            color: #fff;
+            margin: 5px 0;
+        }
+        .embed-img {
+            width: 100%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+
+        /* Кнопки поиска Like/Skip */
+        .search-buttons {
+            display: flex;
+            gap: 8px;
             margin-top: 10px;
+        }
+        .s-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Выпадающий список /edit_profile */
+        .discord-dropdown {
+            background-color: #202225;
+            border-radius: 4px;
+            padding: 8px 0;
+            border: 1px solid #111;
+        }
+        .dropdown-title {
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #72767d;
+            padding: 4px 12px;
+            text-transform: uppercase;
+        }
+        .dropdown-item {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            color: #dcddde;
+        }
+        .dropdown-item:hover {
+            background-color: #5865F2;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Настройки /settings */
+        .settings-box {
+            background-color: var(--discord-embed-bg);
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 4px solid #72767d;
+        }
+        .set-title {
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        .set-btn {
+            background-color: #5865F2;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -260,7 +386,6 @@
 </head>
 <body>
 
-    <!-- HERO БЛОК С ЛОГОТИПОМ -->
     <section class="hero-section">
         <div class="logo-container">
             <div class="bot-logo"></div>
@@ -273,94 +398,173 @@
         </div>
     </section>
 
-    <!-- ИНДИКАТОРЫ СТАТИСТИКИ -->
     <div class="stats-container" data-aos="fade-up">
         <div class="stat-item">
             <div class="stat-icon">💾</div>
             <div class="stat-info">
                 <span class="stat-label">Servers</span>
-                <span class="stat-value">1,802,275</span>
+                <span class="stat-value" data-target="1802275">0</span>
             </div>
         </div>
         <div class="stat-item">
             <div class="stat-icon">👥</div>
             <div class="stat-info">
                 <span class="stat-label">Users</span>
-                <span class="stat-value">126,456,129</span>
+                <span class="stat-value" data-target="126456129">0</span>
             </div>
         </div>
     </div>
 
-    <!-- АНИМИРОВАННЫЕ КОМАНДЫ ПРИ СКРОЛЛЕ -->
     <section class="commands-section">
-        <h2 class="section-title" data-aos="fade-down">🚀 Commands & Systems</h2>
+        <h2 class="section-title" data-aos="fade-down">🚀 Bot Commands</h2>
 
-        <!-- Команда 1: Вплывает слева, картинка справа -->
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/register</div>
-                <p class="command-desc">Start your journey and create your profile card. Customize it anytime to showcase your style, stats, and preferences to teammates.</p>
+                <div class="command-name">1. /register</div>
+                <p class="command-desc">Открывает удобное диалоговое окно прямо внутри Discord. Заполни своё имя, возраст, страну, укажи игры через запятую и краткую информацию о себе, чтобы создать личную карточку.</p>
             </div>
             <div class="command-visual">
-                <div class="discord-author">Cosmo Bot ✨</div>
-                <div class="discord-embed-title">Profile Created Successfully!</div>
-                <div class="discord-field">
-                    <span class="discord-field-name">User:</span>
-                    <span class="discord-field-value">Yakov</span>
-                </div>
-                <!-- Пример картинки игры/карточки внутри дискорда -->
-                <div style="background: #202225; padding: 15px; border-radius: 6px; text-align: center; color: var(--accent-color); font-weight: bold;">
-                    [ LVL 1 ] COSMO PASS ACTIVE
+                <div class="discord-modal">
+                    <div class="modal-header">Create your Cosmo Profile</div>
+                    <div class="modal-warning">⚠️ This form will be submitted to Cosmo. Do not share passwords or other sensitive information.</div>
+                    <div class="modal-field">Name *</div>
+                    <div class="modal-input">Cosmo</div>
+                    <div class="modal-field">Age (14+) *</div>
+                    <div class="modal-input">67</div>
+                    <div class="modal-field">Country (Capitalized) *</div>
+                    <div class="modal-input">Country</div>
+                    <div class="modal-field">Games you play (comma-separated)</div>
+                    <div class="modal-input">GTA5, VALORANT</div>
+                    <div class="modal-field">About you / Bio</div>
+                    <div class="modal-input" style="height: 40px;">Cosmo bot</div>
+                    <div class="modal-buttons">
+                        <span class="m-btn" style="color:#fff;">Cancel</span>
+                        <span class="m-btn m-btn-sub">Submit</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Команда 2: Вплывает справа, картинка слева (reverse) -->
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/battle</div>
-                <p class="command-desc">Challenge your friends or opponents in global local battles. Choose your moves carefully and win exclusive profile frames.</p>
+                <div class="command-name">2. /profile</div>
+                <p class="command-desc">Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку твоего аккаунта.</p>
             </div>
             <div class="command-visual">
-                <div class="discord-author">Cosmo Battle System ⚔️</div>
-                <div class="discord-embed-title">Battle between Ash and Misty</div>
-                <div class="discord-field">
-                    <span class="discord-field-name">Ash's Team:</span>
-                    <span class="discord-field-value">Marowak • 84/176 HP</span>
-                </div>
-                <!-- Имитация игрового окна как на твоем скриншоте -->
-                <div style="background: linear-gradient(180deg, #4da333, #1f5012); height: 120px; border-radius: 6px; position: relative; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #fff;">
-                    <div style="position: absolute; bottom: 10px; left: 15px; background: rgba(0,0,0,0.6); padding: 4px 8px; border-radius: 4px;">Marowak HP [████░░░]</div>
-                    <div style="font-weight: bold; text-shadow: 1px 1px 2px #000;">BATTLE IN PROGRESS</div>
+                <div class="discord-embed">
+                    <div class="embed-title">My Profile: Cosmo, 67 (Country)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo bot</div>
+                    <div class="embed-grid">
+                        <div>
+                            <div class="embed-label">Gender:</div>
+                            <div class="embed-val">M</div>
+                        </div>
+                        <div>
+                            <div class="embed-label">Looking for:</div>
+                            <div class="embed-val">Anyone</div>
+                        </div>
+                    </div>
+                    <div class="embed-label" style="margin-top: 8px;">Plays:</div>
+                    <div class="plays-box">GTA5, VALORANT</div>
+                    <img src="https://i.postimg.cc/mDCHv8gG/cat.png" class="embed-img" alt="Profile Avatar">
                 </div>
             </div>
         </div>
 
-        <!-- Команда 3: Вплывает снизу -->
-        <div class="command-row" data-aos="fade-up" data-aos-duration="1000">
+        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/settings</div>
-                <p class="command-desc">Full bot configuration control. Set your language preferences, notification settings, and regional filters effortlessly.</p>
+                <div class="command-name">3. /edit_profile</div>
+                <p class="command-desc">Позволяет быстро изменить любой конкретный параметр твоей анкеты. Выбери из выпадающего меню нужную опцию: имя, возраст, описание, страну, список игр или предпочтения по поиску.</p>
             </div>
             <div class="command-visual">
-                <div class="discord-author">Cosmo Settings ⚙️</div>
-                <div class="discord-field-name">⚙️ System Configuration</div>
-                <div style="margin-top: 10px; display: flex; gap: 5px;">
-                    <span style="background: #4f545c; padding: 4px 10px; border-radius: 3px; font-size: 0.85rem;">🌐 Language: EN</span>
-                    <span style="background: #4f545c; padding: 4px 10px; border-radius: 3px; font-size: 0.85rem;">🔔 Alerts: ON</span>
+                <div class="discord-dropdown">
+                    <div class="dropdown-title">Options</div>
+                    <div class="dropdown-item">name</div>
+                    <div class="dropdown-item">age</div>
+                    <div class="dropdown-item">description</div>
+                    <div class="dropdown-item">country</div>
+                    <div class="dropdown-item">games</div>
+                    <div class="dropdown-item">looking_for</div>
                 </div>
+            </div>
+        </div>
+
+        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
+            <div class="command-text">
+                <div class="command-name">4. /search</div>
+                <p class="command-desc">Глобальная поисковая система. Осуществляет подбор тиммейтов **строго по совпадению игр**, которые вы указали в анкете. Оценивай анкеты кнопками Like или Skip в реальном времени!</p>
+            </div>
+            <div class="command-visual">
+                <div class="discord-embed" style="border-left-color: #00b0f4;">
+                    <div class="embed-title">🔍 Ya, 52 (Country)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo Bot</div>
+                    <div class="embed-grid">
+                        <div>
+                            <div class="embed-label">Gender:</div>
+                            <div class="embed-val">M</div>
+                        </div>
+                        <div>
+                            <div class="embed-label">Looking for:</div>
+                            <div class="embed-val">Anyone</div>
+                        </div>
+                    </div>
+                    <div class="embed-label" style="margin-top: 8px;">Plays:</div>
+                    <div class="plays-box">GTA5, VALORANT</div>
+                    <img src="https://i.postimg.cc/85zX8g9L/joker.png" class="embed-img" alt="Search Result">
+                </div>
+                <div class="search-buttons">
+                    <span class="s-btn" style="background-color: #248046;">💖 Like</span>
+                    <span class="s-btn" style="background-color: #4f545c;">👎 Skip</span>
+                    <span class="s-btn" style="background-color: #da373c;">⚠️ Report</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
+            <div class="command-text">
+                <div class="command-name">5. /settings</div>
+                <p class="command-desc">Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения.</p>
+            </div>
+            <div class="command-visual">
+                <div class="settings-box">
+                    <div class="set-title">⚙️ Cosmo Settings</div>
+                    <div class="embed-val">Select what you want to change:</div>
+                </div>
+                <div class="set-btn">🌐 Change Language</div>
             </div>
         </div>
 
     </section>
 
-    <!-- Подключаем JS скрипты для работы анимации -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Инициализируем анимацию скролла, отключаем повторение, чтобы работало плавно
-        AOS.init({
-            once: true
-        });
+        AOS.init({ once: true });
+
+        // Скрипт оживления индикаторов (анимация набора цифр)
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-value');
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const startTime = performance.now();
+
+                function updateNumber(currentTime) {
+                    const elapsedTime = currentTime - startTime;
+                    if (elapsedTime < duration) {
+                        const progress = elapsedTime / duration;
+                        const currentVal = Math.floor(progress * target);
+                        counter.innerText = currentVal.toLocaleString('en-US');
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        counter.innerText = target.toLocaleString('en-US');
+                    }
+                }
+                requestAnimationFrame(updateNumber);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', animateCounters);
     </script>
 </body>
 </html>
