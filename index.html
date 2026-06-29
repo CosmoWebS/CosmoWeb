@@ -4,51 +4,363 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmo — Discord Bot</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Подключаем стили для анимации скролла (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f111a;
+            --card-bg: #161925;
+            --accent-color: #5865F2;
+            --text-main: #ffffff;
+            --text-muted: #a0a5c1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный фон со звездами */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            min-height: 70vh;
+            background: radial-gradient(circle at center, #1b203e 0%, var(--bg-color) 70%);
+        }
+
+        /* Пульсирующий анимированный логотип */
+        .logo-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .bot-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            /* Замени на путь к твоему файлу b6e63ed1-0983-4146-9f0a-ac6b5dab5670.png */
+            background-image: url('logo.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.2);
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 30px rgba(88, 101, 242, 0.2); }
+            50% { transform: scale(1.04); box-shadow: 0 0 50px rgba(88, 101, 242, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 30px rgba(88, 101, 242, 0.2); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4752c4;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #4f545c;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Индикаторы статистики (Servers & Users) */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            background-color: var(--card-bg);
+            padding: 30px 60px;
+            border-radius: 16px;
+            margin: -40px auto 80px auto;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Раздел команд при скролле */
+        .commands-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 60px;
+        }
+
+        .command-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        /* Меняем местами картинку и текст для шахматного порядка */
+        .command-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .command-text {
+            flex: 1;
+        }
+
+        .command-name {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-family: monospace;
+        }
+
+        .command-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Превью встроенных сообщений а-ля Дискорд */
+        .command-visual {
+            flex: 1;
+            background-color: #2f3136; /* Цвет темы Дискорда */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .command-visual:hover {
+            transform: scale(1.03);
+        }
+
+        .discord-author {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .discord-embed-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #00b0f4;
+        }
+
+        .discord-field {
+            margin-bottom: 10px;
+        }
+
+        .discord-field-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        .discord-field-value {
+            color: #dcddde;
+            font-size: 0.9rem;
+        }
+
+        .discord-image {
+            width: 100%;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .command-row, .command-row.reverse {
+                flex-direction: column;
+                text-align: center;
+            }
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">🌌 Cosmo</div>
-            <p class="subtitle">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
-            <div class="buttons">
-                <a href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank" class="btn btn-primary">Invite Bot</a>
-                <a href="https://discord.gg/CsVNBZB3r" target="_blank" class="btn btn-secondary">Support Server</a>
+
+    <!-- HERO БЛОК С ЛОГОТИПОМ -->
+    <section class="hero-section">
+        <div class="logo-container">
+            <div class="bot-logo"></div>
+        </div>
+        <h1>Cosmo</h1>
+        <p class="description">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
+        <div class="btn-container">
+            <a class="btn btn-primary" href="#">Invite Bot</a>
+            <a class="btn btn-secondary" href="#">Support Server</a>
+        </div>
+    </section>
+
+    <!-- ИНДИКАТОРЫ СТАТИСТИКИ -->
+    <div class="stats-container" data-aos="fade-up">
+        <div class="stat-item">
+            <div class="stat-icon">💾</div>
+            <div class="stat-info">
+                <span class="stat-label">Servers</span>
+                <span class="stat-value">1,802,275</span>
             </div>
-        </header>
-
-        <hr class="divider">
-
-        <section class="section">
-            <h3>🚀 Commands</h3>
-            <ul class="commands-list">
-                <li><strong>/register</strong> — Start your journey and create your profile card.</li>
-                <li><strong>/edit_profile</strong> — Change your profile card anytime.</li>
-                <li><strong>/profile</strong> — View your personal card.</li>
-                <li><strong>/settings</strong> — Bot Settings</li>
-            </ul>
-        </section>
-
-        <hr class="divider">
-
-        <section class="section">
-            <h3>✨ Features</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h4>Clean Design</h4>
-                    <p>Beautiful, uncluttered embed profile cards.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Global & Local</h4>
-                    <p>Meet people globally or filter by your country.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>No Bloat</h4>
-                    <p>No useless features, no spam. Just pure connection.</p>
-                </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">👥</div>
+            <div class="stat-info">
+                <span class="stat-label">Users</span>
+                <span class="stat-value">126,456,129</span>
             </div>
-        </section>
+        </div>
     </div>
+
+    <!-- АНИМИРОВАННЫЕ КОМАНДЫ ПРИ СКРОЛЛЕ -->
+    <section class="commands-section">
+        <h2 class="section-title" data-aos="fade-down">🚀 Commands & Systems</h2>
+
+        <!-- Команда 1: Вплывает слева, картинка справа -->
+        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
+            <div class="command-text">
+                <div class="command-name">/register</div>
+                <p class="command-desc">Start your journey and create your profile card. Customize it anytime to showcase your style, stats, and preferences to teammates.</p>
+            </div>
+            <div class="command-visual">
+                <div class="discord-author">Cosmo Bot ✨</div>
+                <div class="discord-embed-title">Profile Created Successfully!</div>
+                <div class="discord-field">
+                    <span class="discord-field-name">User:</span>
+                    <span class="discord-field-value">Yakov</span>
+                </div>
+                <!-- Пример картинки игры/карточки внутри дискорда -->
+                <div style="background: #202225; padding: 15px; border-radius: 6px; text-align: center; color: var(--accent-color); font-weight: bold;">
+                    [ LVL 1 ] COSMO PASS ACTIVE
+                </div>
+            </div>
+        </div>
+
+        <!-- Команда 2: Вплывает справа, картинка слева (reverse) -->
+        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
+            <div class="command-text">
+                <div class="command-name">/battle</div>
+                <p class="command-desc">Challenge your friends or opponents in global local battles. Choose your moves carefully and win exclusive profile frames.</p>
+            </div>
+            <div class="command-visual">
+                <div class="discord-author">Cosmo Battle System ⚔️</div>
+                <div class="discord-embed-title">Battle between Ash and Misty</div>
+                <div class="discord-field">
+                    <span class="discord-field-name">Ash's Team:</span>
+                    <span class="discord-field-value">Marowak • 84/176 HP</span>
+                </div>
+                <!-- Имитация игрового окна как на твоем скриншоте -->
+                <div style="background: linear-gradient(180deg, #4da333, #1f5012); height: 120px; border-radius: 6px; position: relative; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #fff;">
+                    <div style="position: absolute; bottom: 10px; left: 15px; background: rgba(0,0,0,0.6); padding: 4px 8px; border-radius: 4px;">Marowak HP [████░░░]</div>
+                    <div style="font-weight: bold; text-shadow: 1px 1px 2px #000;">BATTLE IN PROGRESS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Команда 3: Вплывает снизу -->
+        <div class="command-row" data-aos="fade-up" data-aos-duration="1000">
+            <div class="command-text">
+                <div class="command-name">/settings</div>
+                <p class="command-desc">Full bot configuration control. Set your language preferences, notification settings, and regional filters effortlessly.</p>
+            </div>
+            <div class="command-visual">
+                <div class="discord-author">Cosmo Settings ⚙️</div>
+                <div class="discord-field-name">⚙️ System Configuration</div>
+                <div style="margin-top: 10px; display: flex; gap: 5px;">
+                    <span style="background: #4f545c; padding: 4px 10px; border-radius: 3px; font-size: 0.85rem;">🌐 Language: EN</span>
+                    <span style="background: #4f545c; padding: 4px 10px; border-radius: 3px; font-size: 0.85rem;">🔔 Alerts: ON</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Подключаем JS скрипты для работы анимации -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Инициализируем анимацию скролла, отключаем повторение, чтобы работало плавно
+        AOS.init({
+            once: true
+        });
+    </script>
 </body>
 </html>
