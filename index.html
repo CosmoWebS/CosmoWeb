@@ -293,12 +293,30 @@
             color: #fff;
             margin: 5px 0;
         }
-        .embed-img {
+
+        /* Локальная заглушка вместо картинок из интернета */
+        .embed-avatar-placeholder {
             width: 100%;
-            max-height: 180px;
-            object-fit: cover;
+            height: 150px;
+            background: linear-gradient(135deg, #2c2f33 0%, #23272a 100%);
             border-radius: 4px;
-            margin-top: 8px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #4f545c;
+            color: #72767d;
+        }
+        .avatar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        .avatar-text {
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         /* Кнопки поиска Like/Skip */
@@ -452,8 +470,8 @@
             </div>
             <div class="command-visual">
                 <div class="discord-embed">
-                    <div class="embed-title">My Profile: Cosmo, 67 (Country)</div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo bot</div>
+                    <div class="embed-title">My Profile: Cosmo, 16 (Israel)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo bot dev</div>
                     <div class="embed-grid">
                         <div>
                             <div class="embed-label">Gender:</div>
@@ -465,8 +483,12 @@
                         </div>
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
-                    <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="https://i.postimg.cc/mDCHv8gG/cat.png" class="embed-img" alt="Profile Avatar">
+                    <div class="plays-box">GTA5, ROBLOX, PYTHON</div>
+
+                    <div class="embed-avatar-placeholder">
+                        <div class="avatar-icon">🐱</div>
+                        <div class="avatar-text">Cosmo User Attachment</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -496,8 +518,8 @@
             </div>
             <div class="command-visual">
                 <div class="discord-embed" style="border-left-color: #00b0f4;">
-                    <div class="embed-title">🔍 Ya, 52 (Country)</div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo Bot</div>
+                    <div class="embed-title">🔍 Teammate Found, 17 (Israel)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Let's play together!</div>
                     <div class="embed-grid">
                         <div>
                             <div class="embed-label">Gender:</div>
@@ -509,8 +531,12 @@
                         </div>
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
-                    <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="https://i.postimg.cc/85zX8g9L/joker.png" class="embed-img" alt="Search Result">
+                    <div class="plays-box">GTA5, ROBLOX</div>
+
+                    <div class="embed-avatar-placeholder" style="border-color: #00b0f4;">
+                        <div class="avatar-icon">🎮</div>
+                        <div class="avatar-text">Game Match Attached</div>
+                    </div>
                 </div>
                 <div class="search-buttons">
                     <span class="s-btn" style="background-color: #248046;">💖 Like</span>
