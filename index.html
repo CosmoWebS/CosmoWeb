@@ -536,33 +536,52 @@
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true });
+<script>
+    AOS.init({ once: true });
 
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-value');
+    async function loadAndAnimateStats() {
+        let serversTarget = 0;
+        let usersTarget = 0;
 
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const duration = 2000;
-                const startTime = performance.now();
+        try {
+            // Запрашиваем данные из нашей серверлесс-функции
+            const response = await fetch('/api/get-stats');
+            const data = await response.json();
 
-                function updateNumber(currentTime) {
-                    const elapsedTime = currentTime - startTime;
-                    if (elapsedTime < duration) {
-                        const progress = elapsedTime / duration;
-                        const currentVal = Math.floor(progress * target);
-                        counter.innerText = currentVal.toLocaleString('en-US');
-                        requestAnimationFrame(updateNumber);
-                    } else {
-                        counter.innerText = target.toLocaleString('en-US');
-                    }
-                }
-                requestAnimationFrame(updateNumber);
-            });
+            serversTarget = data.servers;
+            usersTarget = data.users;
+        } catch (err) {
+            console.error("Не удалось загрузить живую статистику:", err);
+            // Резервные значения на случай ошибки
+            serversTarget = 3;
+            usersTarget = 150;
         }
 
-        document.addEventListener('DOMContentLoaded', animateCounters);
-    </script>
-</body>
-</html>
+        // Находим элементы счетчиков на странице
+        const serversElement = document.querySelector('.stat-item:nth-child(1) .stat-value');
+        const usersElement = document.querySelector('.stat-item:nth-child(2) .stat-value');
+
+        animateSingleCounter(serversElement, serversTarget);
+        animateSingleCounter(usersElement, usersTarget);
+    }
+
+    function animateSingleCounter(element, target) {
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function updateNumber(currentTime) {
+            const elapsedTime = currentTime - startTime;
+            if (elapsedTime < duration) {
+                const progress = elapsedTime / duration;
+                const currentVal = Math.floor(progress * target);
+                element.innerText = currentVal.toLocaleString('en-US');
+                requestAnimationFrame(updateNumber);
+            } else {
+                element.innerText = target.toLocaleString('en-US');
+            }
+        }
+        requestAnimationFrame(updateNumber);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAndAnimateStats);
+</script>
