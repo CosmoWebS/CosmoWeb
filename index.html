@@ -26,17 +26,17 @@
             overflow-x: hidden;
         }
 
-        /* ИСПРАВЛЕННЫЙ HERO-БЛОК НА ВСЮ ШИРИНУ ЭкРАНА */
+        /* HERO-БЛОК СМЕЩЕН СНИЗУ И РАСШИРЕН */
         .hero-section {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 140px; /* Сильно увеличили расстояние между лого и текстом */
-            padding: 120px 8%; /* Сделали адаптивные боковые отступы */
-            min-height: 75vh;
-            width: 100%; /* Занимает всю ширину, задействуя левый угол */
+            justify-content: space-around; /* Раздвигает логотип и текст по сторонам */
+            gap: 40px;
+            padding: 180px 10% 120px 10%; /* Увеличили верхний отступ (180px), чтобы спустить контент ниже */
+            min-height: 80vh;
+            width: 100%;
             box-sizing: border-box;
-            background: radial-gradient(circle at 25% 50%, #15002b 0%, var(--bg-color) 65%);
+            background: radial-gradient(circle at 30% 45%, #15002b 0%, var(--bg-color) 65%);
         }
 
         /* Колонка с лого */
@@ -47,13 +47,13 @@
         }
 
         .bot-logo {
-            width: 340px; /* Увеличили размер логотипа */
-            height: 340px;
+            width: 360px; /* Сделали лого ещё чуть крупнее */
+            height: 360px;
             border-radius: 50%;
             background-image: url('logo.png');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 0 50px rgba(75, 0, 130, 0.35);
+            box-shadow: 0 0 55px rgba(75, 0, 130, 0.4);
             animation: pulseGlow 4s infinite ease-in-out;
         }
 
@@ -63,17 +63,17 @@
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            max-width: 600px; /* Ограничили ширину текста, чтобы он не растягивался сосиской */
+            max-width: 600px;
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 50px rgba(75, 0, 130, 0.35); }
-            50% { transform: scale(1.03); box-shadow: 0 0 75px rgba(75, 0, 130, 0.65); }
-            100% { transform: scale(1); box-shadow: 0 0 50px rgba(75, 0, 130, 0.35); }
+            0% { transform: scale(1); box-shadow: 0 0 55px rgba(75, 0, 130, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 80px rgba(75, 0, 130, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 55px rgba(75, 0, 130, 0.4); }
         }
 
         h1 {
-            font-size: 4.5rem; /* Слегка увеличили шрифт названия */
+            font-size: 4.8rem; /* Увеличенный заголовок */
             margin: 0 0 20px 0;
             letter-spacing: 2px;
             background: linear-gradient(45deg, #fff, #9d4edd);
@@ -83,7 +83,7 @@
 
         .description {
             color: var(--text-muted);
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             margin: 0 0 45px 0;
             line-height: 1.6;
         }
@@ -94,7 +94,7 @@
         }
 
         .btn {
-            padding: 16px 36px;
+            padding: 16px 38px;
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
@@ -371,7 +371,7 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 40px;
-                padding: 60px 20px;
+                padding: 100px 20px 60px 20px;
             }
             .hero-text-container {
                 align-items: center;
