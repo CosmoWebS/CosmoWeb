@@ -7,13 +7,14 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f111a;
-            --card-bg: #161925;
-            --accent-color: #5865F2;
+            --bg-color: #000000; /* Полностью чёрный фон */
+            --card-bg: #0b0c12;
+            --accent-color: #4b0082; /* Выделяющийся цвет Indigo */
+            --accent-hover: #3a0066;
             --text-main: #ffffff;
             --text-muted: #a0a5c1;
-            --discord-bg: #2f3136;
-            --discord-embed-bg: #202225;
+            --discord-bg: #1e1f22;
+            --discord-embed-bg: #2b2d31;
         }
 
         body {
@@ -25,50 +26,67 @@
             overflow-x: hidden;
         }
 
+        /* ДВУХКОЛОНОЧНЫЙ ГЛАВНЫЙ БЛОК */
         .hero-section {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            min-height: 65vh;
-            background: radial-gradient(circle at center, #1b203e 0%, var(--bg-color) 70%);
+            gap: 80px;
+            padding: 100px 40px;
+            min-height: 70vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: radial-gradient(circle at 30% 50%, #15002b 0%, var(--bg-color) 60%);
         }
 
+        /* Колонка с лого (слева) */
         .logo-container {
-            position: relative;
-            margin-bottom: 30px;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .bot-logo {
-            width: 180px;
-            height: 180px;
+            width: 280px; /* Сделали лого больше */
+            height: 280px;
             border-radius: 50%;
-            background-image: url('logo.png');
+            background-image: url('https://i.postimg.cc/9F4gZg3S/b6e63ed1-0983-4146-9f0a-ac6b5dab5670.jpg');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.2);
+            box-shadow: 0 0 40px rgba(75, 0, 130, 0.3);
             animation: pulseGlow 4s infinite ease-in-out;
         }
 
+        /* Колонка с текстом и кнопками (справа) */
+        .hero-text-container {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
         @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 30px rgba(88, 101, 242, 0.2); }
-            50% { transform: scale(1.04); box-shadow: 0 0 50px rgba(88, 101, 242, 0.5); }
-            100% { transform: scale(1); box-shadow: 0 0 30px rgba(88, 101, 242, 0.2); }
+            0% { transform: scale(1); box-shadow: 0 0 40px rgba(75, 0, 130, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(75, 0, 130, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 0 40px rgba(75, 0, 130, 0.3); }
         }
 
         h1 {
-            font-size: 3rem;
-            margin: 10px 0;
-            letter-spacing: 1px;
+            font-size: 4rem;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #fff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .description {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 40px;
+            font-size: 1.25rem;
+            max-width: 550px;
+            margin: 0 0 40px 0;
+            line-height: 1.5;
         }
 
         .btn-container {
@@ -77,7 +95,7 @@
         }
 
         .btn {
-            padding: 14px 28px;
+            padding: 16px 32px;
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
@@ -88,11 +106,13 @@
         .btn-primary {
             background-color: var(--accent-color);
             color: #fff;
+            box-shadow: 0 4px 15px rgba(75, 0, 130, 0.4);
         }
 
         .btn-primary:hover {
-            background-color: #4752c4;
+            background-color: var(--accent-hover);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(75, 0, 130, 0.6);
         }
 
         .btn-secondary {
@@ -103,6 +123,7 @@
 
         .btn-secondary:hover {
             background-color: rgba(255,255,255,0.05);
+            border-color: #fff;
             transform: translateY(-2px);
         }
 
@@ -110,12 +131,12 @@
         .commands-section {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px 60px 20px;
+            padding: 80px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 80px;
         }
 
@@ -137,7 +158,7 @@
 
         .command-name {
             font-size: 1.9rem;
-            color: var(--accent-color);
+            color: #9d4edd;
             margin-bottom: 15px;
             font-family: monospace;
             font-weight: bold;
@@ -149,27 +170,26 @@
             line-height: 1.6;
         }
 
-        /* Стилизация окон под интерфейс Дискорда */
         .command-visual {
             flex: 1;
             background-color: var(--discord-bg);
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             transition: transform 0.3s ease;
-            color: #dcddde;
+            color: #dbdee1;
         }
 
         .command-visual:hover {
             transform: scale(1.02);
         }
 
-        /* Форма /register */
+        /* Компоненты Discord */
         .discord-modal {
-            background-color: #36393f;
+            background-color: #313338;
             border-radius: 4px;
             padding: 15px;
-            border: 1px solid #202225;
+            border: 1px solid #1e1f22;
         }
         .modal-header {
             font-size: 1.1rem;
@@ -189,18 +209,18 @@
         .modal-field {
             font-size: 0.75rem;
             font-weight: bold;
-            color: #b9bbbe;
+            color: #b5bac1;
             margin-bottom: 5px;
             text-transform: uppercase;
         }
         .modal-input {
-            background-color: #202225;
+            background-color: #1e1f22;
             padding: 8px;
             border-radius: 3px;
             font-size: 0.85rem;
-            color: #dcddde;
+            color: #dbdee1;
             margin-bottom: 12px;
-            border: 1px solid #222;
+            border: 1px solid #111;
         }
         .modal-buttons {
             display: flex;
@@ -215,9 +235,8 @@
         }
         .m-btn-sub { background-color: #5865F2; color: white; }
 
-        /* Эмбеды профилей /profile и /search */
         .discord-embed {
-            border-left: 4px solid #43b581;
+            border-left: 4px solid #23a55a;
             background-color: var(--discord-embed-bg);
             padding: 12px;
             border-radius: 4px;
@@ -238,13 +257,13 @@
             color: #fff;
             font-size: 0.85rem;
         }
-        .embed-val { font-size: 0.85rem; color: #dcddde; }
+        .embed-val { font-size: 0.85rem; color: #dbdee1; }
         .plays-box {
-            background-color: #2f3136;
+            background-color: #1e1f22;
             padding: 6px;
             border-radius: 4px;
             font-size: 0.85rem;
-            border: 1px solid #202225;
+            border: 1px solid #111;
             color: #fff;
             margin: 5px 0;
         }
@@ -256,7 +275,6 @@
             margin-top: 10px;
         }
 
-        /* Кнопки поиска Like/Skip */
         .search-buttons {
             display: flex;
             gap: 8px;
@@ -273,9 +291,8 @@
             gap: 4px;
         }
 
-        /* Выпадающий список /edit_profile */
         .discord-dropdown {
-            background-color: #202225;
+            background-color: #1e1f22;
             border-radius: 4px;
             padding: 8px 0;
             border: 1px solid #111;
@@ -283,14 +300,14 @@
         .dropdown-title {
             font-size: 0.7rem;
             font-weight: bold;
-            color: #72767d;
+            color: #949ba4;
             padding: 4px 12px;
             text-transform: uppercase;
         }
         .dropdown-item {
             padding: 6px 12px;
             font-size: 0.9rem;
-            color: #dcddde;
+            color: #dbdee1;
         }
         .dropdown-item:hover {
             background-color: #5865F2;
@@ -298,12 +315,11 @@
             cursor: pointer;
         }
 
-        /* Настройки /settings */
         .settings-box {
             background-color: var(--discord-embed-bg);
             padding: 12px;
             border-radius: 4px;
-            border-left: 4px solid #72767d;
+            border-left: 4px solid #80848e;
         }
         .set-title {
             color: #fff;
@@ -328,10 +344,10 @@
 
         /* Подвал */
         footer {
-            background-color: #0b0c12;
+            background-color: #050508;
             padding: 40px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
             color: var(--text-muted);
             font-size: 0.95rem;
         }
@@ -347,13 +363,31 @@
             transition: color 0.2s ease;
         }
         .footer-links a:hover {
-            color: var(--accent-color);
+            color: #9d4edd;
         }
 
-        @media (max-width: 768px) {
+        /* Адаптивность для мобилок */
+        @media (max-width: 900px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+                padding: 60px 20px;
+            }
+            .logo-container {
+                justify-content: center;
+            }
+            .hero-text-container {
+                align-items: center;
+                text-align: center;
+            }
             .command-row, .command-row.reverse {
                 flex-direction: column;
                 text-align: center;
+            }
+            .bot-logo {
+                width: 200px;
+                height: 200px;
             }
         }
     </style>
@@ -361,15 +395,18 @@
 <body>
 
     <section class="hero-section">
-        <div class="logo-container">
+        <div class="logo-container" data-aos="zoom-in" data-aos-duration="1200">
             <div class="bot-logo"></div>
         </div>
-        <h1>Cosmo</h1>
-        <p class="description">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
 
-        <div class="btn-container">
-            <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Bot</a>
-            <a class="btn btn-secondary" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
+        <div class="hero-text-container" data-aos="fade-left" data-aos-duration="1200">
+            <h1>Cosmo</h1>
+            <p class="description">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
+
+            <div class="btn-container">
+                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Bot</a>
+                <a class="btn btn-secondary" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
+            </div>
         </div>
     </section>
 
@@ -424,7 +461,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Profile Avatar">
+                    <img src="https://i.postimg.cc/8zW31sC0/cat.png" class="embed-img" alt="Profile Avatar">
                 </div>
             </div>
         </div>
@@ -468,7 +505,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Search Result">
+                    <img src="https://i.postimg.cc/tJnNf4Xq/joker.png" class="embed-img" alt="Search Result">
                 </div>
                 <div class="search-buttons">
                     <span class="s-btn" style="background-color: #248046;">💖 Like</span>
