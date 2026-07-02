@@ -7,9 +7,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000; /* Полностью чёрный фон */
+            --bg-color: #000000;
             --card-bg: #0b0c12;
-            --accent-color: #4b0082; /* Выделяющийся цвет Indigo */
+            --accent-color: #4b0082;
             --accent-hover: #3a0066;
             --text-main: #ffffff;
             --text-muted: #a0a5c1;
@@ -26,55 +26,55 @@
             overflow-x: hidden;
         }
 
-        /* ДВУХКОЛОНОЧНЫЙ ГЛАВНЫЙ БЛОК */
+        /* ИСПРАВЛЕННЫЙ HERO-БЛОК НА ВСЮ ШИРИНУ ЭкРАНА */
         .hero-section {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 80px;
-            padding: 100px 40px;
-            min-height: 70vh;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: radial-gradient(circle at 30% 50%, #15002b 0%, var(--bg-color) 60%);
+            gap: 140px; /* Сильно увеличили расстояние между лого и текстом */
+            padding: 120px 8%; /* Сделали адаптивные боковые отступы */
+            min-height: 75vh;
+            width: 100%; /* Занимает всю ширину, задействуя левый угол */
+            box-sizing: border-box;
+            background: radial-gradient(circle at 25% 50%, #15002b 0%, var(--bg-color) 65%);
         }
 
-        /* Колонка с лого (слева) */
+        /* Колонка с лого */
         .logo-container {
-            flex: 1;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
         }
 
         .bot-logo {
-            width: 280px; /* Сделали лого больше */
-            height: 280px;
+            width: 340px; /* Увеличили размер логотипа */
+            height: 340px;
             border-radius: 50%;
             background-image: url('logo.png');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 0 40px rgba(75, 0, 130, 0.3);
+            box-shadow: 0 0 50px rgba(75, 0, 130, 0.35);
             animation: pulseGlow 4s infinite ease-in-out;
         }
 
-        /* Колонка с текстом и кнопками (справа) */
+        /* Колонка с текстом и кнопками */
         .hero-text-container {
-            flex: 1.2;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
+            max-width: 600px; /* Ограничили ширину текста, чтобы он не растягивался сосиской */
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 40px rgba(75, 0, 130, 0.3); }
-            50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(75, 0, 130, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 40px rgba(75, 0, 130, 0.3); }
+            0% { transform: scale(1); box-shadow: 0 0 50px rgba(75, 0, 130, 0.35); }
+            50% { transform: scale(1.03); box-shadow: 0 0 75px rgba(75, 0, 130, 0.65); }
+            100% { transform: scale(1); box-shadow: 0 0 50px rgba(75, 0, 130, 0.35); }
         }
 
         h1 {
-            font-size: 4rem;
-            margin: 0 0 15px 0;
+            font-size: 4.5rem; /* Слегка увеличили шрифт названия */
+            margin: 0 0 20px 0;
             letter-spacing: 2px;
             background: linear-gradient(45deg, #fff, #9d4edd);
             -webkit-background-clip: text;
@@ -83,19 +83,18 @@
 
         .description {
             color: var(--text-muted);
-            font-size: 1.25rem;
-            max-width: 550px;
-            margin: 0 0 40px 0;
-            line-height: 1.5;
+            font-size: 1.3rem;
+            margin: 0 0 45px 0;
+            line-height: 1.6;
         }
 
         .btn-container {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .btn {
-            padding: 16px 32px;
+            padding: 16px 36px;
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
@@ -367,15 +366,12 @@
         }
 
         /* Адаптивность для мобилок */
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             .hero-section {
                 flex-direction: column;
                 text-align: center;
                 gap: 40px;
                 padding: 60px 20px;
-            }
-            .logo-container {
-                justify-content: center;
             }
             .hero-text-container {
                 align-items: center;
@@ -386,8 +382,8 @@
                 text-align: center;
             }
             .bot-logo {
-                width: 200px;
-                height: 200px;
+                width: 240px;
+                height: 240px;
             }
         }
     </style>
@@ -528,7 +524,6 @@
                 <div class="set-btn">🌐 Change Language</div>
             </div>
         </div>
-
     </section>
 
     <footer>
