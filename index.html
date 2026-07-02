@@ -45,7 +45,7 @@
             width: 180px;
             height: 180px;
             border-radius: 50%;
-            background-image: url('logo.png');
+            background-image: url('https://i.postimg.cc/9F4gZg3S/b6e63ed1-0983-4146-9f0a-ac6b5dab5670.jpg');
             background-size: cover;
             background-position: center;
             box-shadow: 0 0 30px rgba(88, 101, 242, 0.2);
@@ -110,7 +110,7 @@
         .commands-section {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px 100px 20px;
+            padding: 60px 20px 60px 20px;
         }
 
         .section-title {
@@ -326,10 +326,38 @@
             font-weight: 500;
         }
 
+        /* Стильный подвал (Footer) */
+        footer {
+            background-color: #0b0c12;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
         @media (max-width: 768px) {
             .command-row, .command-row.reverse {
                 flex-direction: column;
                 text-align: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
             }
         }
     </style>
@@ -399,7 +427,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Profile Avatar">
+                    <img src="https://i.postimg.cc/8zW31sC0/cat.png" class="embed-img" alt="Profile Avatar">
                 </div>
             </div>
         </div>
@@ -425,7 +453,7 @@
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">4. /search</div>
-                <p class="command-desc">Глобальная поисковая система. Осуществляет подбор тиммейтов **строго по совпадению игр**, которые вы указали в анкете. Оценивай анкеты кнопками Like или Skip в реальном времени!</p>
+                <p class="command-desc">Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!</p>
             </div>
             <div class="command-visual">
                 <div class="discord-embed" style="border-left-color: #00b0f4;">
@@ -443,7 +471,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Search Result">
+                    <img src="https://i.postimg.cc/tJnNf4Xq/joker.png" class="embed-img" alt="Search Result">
                 </div>
                 <div class="search-buttons">
                     <span class="s-btn" style="background-color: #248046;">💖 Like</span>
@@ -468,6 +496,16 @@
         </div>
 
     </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Support Server</a>
+            <a href="#">GitHub Project</a>
+        </div>
+        <p>&copy; 2026 Cosmo Bot. All rights reserved.</p>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
