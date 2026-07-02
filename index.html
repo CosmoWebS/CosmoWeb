@@ -45,7 +45,7 @@
             width: 180px;
             height: 180px;
             border-radius: 50%;
-            background-image: url('logo.png');
+            background-image: url('https://i.postimg.cc/9F4gZg3S/b6e63ed1-0983-4146-9f0a-ac6b5dab5670.jpg');
             background-size: cover;
             background-position: center;
             box-shadow: 0 0 30px rgba(88, 101, 242, 0.2);
@@ -106,55 +106,11 @@
             transform: translateY(-2px);
         }
 
-        /* Индикаторы статистики */
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            background-color: var(--card-bg);
-            padding: 30px 60px;
-            border-radius: 16px;
-            margin: -40px auto 80px auto;
-            max-width: 700px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .stat-icon {
-            font-size: 2.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .stat-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
         /* Раздел команд */
         .commands-section {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px 100px 20px;
+            padding: 60px 20px 100px 20px;
         }
 
         .section-title {
@@ -375,11 +331,6 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .stats-container {
-                flex-direction: column;
-                gap: 30px;
-                align-items: center;
-            }
         }
     </style>
 </head>
@@ -396,23 +347,6 @@
             <a class="btn btn-secondary" href="#">Support Server</a>
         </div>
     </section>
-
-    <div class="stats-container" data-aos="fade-up">
-        <div class="stat-item">
-            <div class="stat-icon">💾</div>
-            <div class="stat-info">
-                <span class="stat-label">Servers</span>
-                <span class="stat-value" data-target="1802275">0</span>
-            </div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-icon">👥</div>
-            <div class="stat-info">
-                <span class="stat-label">Users</span>
-                <span class="stat-value" data-target="126456129">0</span>
-            </div>
-        </div>
-    </div>
 
     <section class="commands-section">
         <h2 class="section-title" data-aos="fade-down">🚀 Bot Commands</h2>
@@ -465,7 +399,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Profile Avatar">
+                    <img src="https://i.postimg.cc/8zW31sC0/cat.png" class="embed-img" alt="Profile Avatar">
                 </div>
             </div>
         </div>
@@ -509,7 +443,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Search Result">
+                    <img src="https://i.postimg.cc/tJnNf4Xq/joker.png" class="embed-img" alt="Search Result">
                 </div>
                 <div class="search-buttons">
                     <span class="s-btn" style="background-color: #248046;">💖 Like</span>
@@ -536,52 +470,8 @@
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({ once: true });
-
-    async function loadAndAnimateStats() {
-        let serversTarget = 0;
-        let usersTarget = 0;
-
-        try {
-            // Запрашиваем данные из нашей серверлесс-функции
-            const response = await fetch('/api/get-stats');
-            const data = await response.json();
-
-            serversTarget = data.servers;
-            usersTarget = data.users;
-        } catch (err) {
-            console.error("Не удалось загрузить живую статистику:", err);
-            // Резервные значения на случай ошибки
-            serversTarget = 3;
-            usersTarget = 150;
-        }
-
-        // Находим элементы счетчиков на странице
-        const serversElement = document.querySelector('.stat-item:nth-child(1) .stat-value');
-        const usersElement = document.querySelector('.stat-item:nth-child(2) .stat-value');
-
-        animateSingleCounter(serversElement, serversTarget);
-        animateSingleCounter(usersElement, usersTarget);
-    }
-
-    function animateSingleCounter(element, target) {
-        const duration = 2000;
-        const startTime = performance.now();
-
-        function updateNumber(currentTime) {
-            const elapsedTime = currentTime - startTime;
-            if (elapsedTime < duration) {
-                const progress = elapsedTime / duration;
-                const currentVal = Math.floor(progress * target);
-                element.innerText = currentVal.toLocaleString('en-US');
-                requestAnimationFrame(updateNumber);
-            } else {
-                element.innerText = target.toLocaleString('en-US');
-            }
-        }
-        requestAnimationFrame(updateNumber);
-    }
-
-    document.addEventListener('DOMContentLoaded', loadAndAnimateStats);
-</script>
+    <script>
+        AOS.init({ once: true });
+    </script>
+</body>
+</html>
