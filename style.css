@@ -478,31 +478,3 @@ footer {
         height: 240px;
     }
 }
-
-/* Элементы внутри обновленного Discord Embed */
-.embed-header-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 12px;
-}
-
-.embed-main-info {
-    flex: 1;
-}
-
-.embed-bio {
-    font-size: 0.9rem;
-    color: #dbdee1;
-    margin-top: 6px;
-    line-height: 1.4;
-}
-
-.embed-avatar {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--accent-color);
-}
