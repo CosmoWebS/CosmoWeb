@@ -55,6 +55,7 @@
     <section class="commands-section">
         <h2 class="section-title" data-aos="fade-down">🚀 Bot Commands</h2>
 
+        <!-- COMMAND 1: REGISTER -->
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">1. /register</div>
@@ -82,53 +83,41 @@
             </div>
         </div>
 
+        <!-- COMMAND 2: PROFILE (ОБНОВЛЁН) -->
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">2. /profile</div>
-                <p class="command-desc">Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку твоего аккаунта.</p>
+                <p class="command-desc">Выводит твой текущий игровой профиль в виде стильной личной карточки. Показывает твоё имя, возраст, страну, пол, предпочтения в поиске, описание профиля и список твоих любимых игр с твоим аватаром.</p>
             </div>
             <div class="command-visual">
                 <div class="discord-embed">
-                    <div class="embed-title">My Profile: Cosmo, 67 (Country)</div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo bot</div>
+                    <div class="embed-header-wrapper">
+                        <div class="embed-main-info">
+                            <div class="embed-title">👤 Profile: Cosmo, 18 🇮🇱</div>
+                            <div class="embed-bio">Looking for teammates to play tactical shooters and open-world games!</div>
+                        </div>
+                        <img src="logo 3.png" class="embed-avatar" alt="Profile Avatar">
+                    </div>
                     <div class="embed-grid">
                         <div>
                             <div class="embed-label">Gender:</div>
-                            <div class="embed-val">M</div>
+                            <div class="embed-val">Male</div>
                         </div>
                         <div>
                             <div class="embed-label">Looking for:</div>
                             <div class="embed-val">Anyone</div>
                         </div>
                     </div>
-                    <div class="embed-label" style="margin-top: 8px;">Plays:</div>
-                    <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Profile Avatar">
+                    <div class="embed-label" style="margin-top: 10px;">Games:</div>
+                    <div class="plays-box">🎮 GTA 5, VALORANT, CS2</div>
                 </div>
             </div>
         </div>
 
+        <!-- COMMAND 3: SEARCH -->
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">3. /edit_profile</div>
-                <p class="command-desc">Позволяет быстро изменить любой конкретный параметр твоей анкеты. Выбери из выпадающего меню нужную опцию: имя, возраст, описание, страну, список игр или предпочтения по поиску.</p>
-            </div>
-            <div class="command-visual">
-                <div class="discord-dropdown">
-                    <div class="dropdown-title">Options</div>
-                    <div class="dropdown-item">name</div>
-                    <div class="dropdown-item">age</div>
-                    <div class="dropdown-item">description</div>
-                    <div class="dropdown-item">country</div>
-                    <div class="dropdown-item">games</div>
-                    <div class="dropdown-item">looking_for</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
-            <div class="command-text">
-                <div class="command-name">4. /search</div>
+                <div class="command-name">3. /search</div>
                 <p class="command-desc">Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!</p>
             </div>
             <div class="command-visual">
@@ -157,9 +146,10 @@
             </div>
         </div>
 
-        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
+        <!-- COMMAND 4: SETTINGS -->
+        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">5. /settings</div>
+                <div class="command-name">4. /settings</div>
                 <p class="command-desc">Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения.</p>
             </div>
             <div class="command-visual">
@@ -184,7 +174,6 @@
     <script>
         AOS.init({ once: true });
 
-        // НАСТРОЙКА DISCORD OAUTH2
         const CLIENT_ID = '1517937739688054856';
         const REDIRECT_URI = window.location.origin + window.location.pathname;
 
