@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmo — Discord Matchmaking Bot</title>
-    <!-- Google Fonts & AOS Animations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+    <title>Cosmo — Discord Bot</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
         :root {
-            --bg-color: #050508;
-            --card-bg: #0e0f17;
-            --accent-purple: #7b2cbf;
-            --accent-glow: #9d4edd;
+            --bg-color: #000000;
+            --card-bg: #0b0c12;
+            --accent-color: #4b0082;
+            --accent-hover: #3a0066;
             --text-main: #ffffff;
-            --text-muted: #9494a1;
+            --text-muted: #a0a5c1;
             --discord-bg: #1e1f22;
             --discord-embed-bg: #2b2d31;
-            --border-color: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -37,33 +26,20 @@
             overflow-x: hidden;
         }
 
-        /* Кастомный скроллбар */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f1f2e;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-purple);
-        }
-
-        /* HERO SECTION */
+        /* HERO-БЛОК СМЕЩЕН СНИЗУ И РАСШИРЕН */
         .hero-section {
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-around; /* Раздвигает логотип и текст по сторонам */
             gap: 40px;
-            padding: 140px 10% 100px 10%;
-            min-height: 85vh;
+            padding: 180px 10% 120px 10%; /* Увеличили верхний отступ (180px), чтобы спустить контент ниже */
+            min-height: 80vh;
             width: 100%;
-            background: radial-gradient(circle at 50% 30%, rgba(123, 44, 191, 0.15) 0%, var(--bg-color) 70%);
+            box-sizing: border-box;
+            background: radial-gradient(circle at 30% 45%, #15002b 0%, var(--bg-color) 65%);
         }
 
+        /* Колонка с лого */
         .logo-container {
             display: flex;
             justify-content: center;
@@ -71,108 +47,104 @@
         }
 
         .bot-logo {
-            width: 320px;
-            height: 320px;
+            width: 360px; /* Сделали лого ещё чуть крупнее */
+            height: 360px;
             border-radius: 50%;
-            background: url('logo.png') center/cover no-repeat, #111;
-            box-shadow: 0 0 60px rgba(157, 78, 221, 0.35);
+            background-image: url('logo 3.png');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 55px rgba(75, 0, 130, 0.4);
             animation: pulseGlow 4s infinite ease-in-out;
-            border: 2px solid rgba(157, 78, 221, 0.3);
         }
 
+        /* Колонка с текстом и кнопками */
         .hero-text-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            max-width: 580px;
+            max-width: 600px;
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 50px rgba(157, 78, 221, 0.3); }
-            50% { transform: scale(1.03); box-shadow: 0 0 85px rgba(157, 78, 221, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 50px rgba(157, 78, 221, 0.3); }
+            0% { transform: scale(1); box-shadow: 0 0 55px rgba(75, 0, 130, 0.4); }
+            50% { transform: scale(1.03); box-shadow: 0 0 80px rgba(75, 0, 130, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 55px rgba(75, 0, 130, 0.4); }
         }
 
         h1 {
-            font-size: 5rem;
-            font-weight: 800;
-            margin: 0 0 15px 0;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 30%, #c77dff 100%);
+            font-size: 4.8rem; /* Увеличенный заголовок */
+            margin: 0 0 20px 0;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #fff, #9d4edd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .description {
             color: var(--text-muted);
-            font-size: 1.25rem;
-            margin: 0 0 40px 0;
+            font-size: 1.35rem;
+            margin: 0 0 45px 0;
             line-height: 1.6;
         }
 
         .btn-container {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 25px;
         }
 
         .btn {
-            padding: 16px 36px;
-            border-radius: 10px;
-            font-size: 1rem;
+            padding: 16px 38px;
+            border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
         }
 
         .btn-primary {
-            background-color: var(--accent-purple);
+            background-color: var(--accent-color);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(123, 44, 191, 0.4);
+            box-shadow: 0 4px 15px rgba(75, 0, 130, 0.4);
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-glow);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.6);
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(75, 0, 130, 0.6);
         }
 
         .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: transparent;
             color: #fff;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
+            border: 1px solid #4f545c;
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+            background-color: rgba(255,255,255,0.05);
+            border-color: #fff;
+            transform: translateY(-2px);
         }
 
-        /* COMMANDS SECTION */
+        /* Раздел команд */
         .commands-section {
-            max-width: 1050px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px 100px 20px;
+            padding: 80px 20px;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 90px;
-            letter-spacing: -0.5px;
+            margin-bottom: 80px;
         }
 
         .command-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 50px;
-            margin-bottom: 100px;
+            gap: 60px;
+            margin-bottom: 120px;
         }
 
         .command-row.reverse {
@@ -184,186 +156,197 @@
         }
 
         .command-name {
-            font-size: 1.8rem;
-            color: var(--accent-glow);
+            font-size: 1.9rem;
+            color: #9d4edd;
             margin-bottom: 15px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: monospace;
+            font-weight: bold;
         }
 
         .command-desc {
             color: var(--text-muted);
             font-size: 1.1rem;
             line-height: 1.6;
-            margin: 0;
         }
 
         .command-visual {
-            flex: 1.1;
+            flex: 1;
             background-color: var(--discord-bg);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
+            color: #dbdee1;
         }
 
         .command-visual:hover {
-            transform: translateY(-4px);
-            border-color: rgba(157, 78, 221, 0.4);
+            transform: scale(1.02);
         }
 
-        /* DISCORD UI COMPONENTS */
+        /* Компоненты Discord */
         .discord-modal {
             background-color: #313338;
-            border-radius: 6px;
-            padding: 16px;
+            border-radius: 4px;
+            padding: 15px;
+            border: 1px solid #1e1f22;
         }
         .modal-header {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: bold;
             color: #fff;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         .modal-warning {
             background-color: rgba(240, 154, 53, 0.1);
             border: 1px solid #f09a35;
-            padding: 8px 10px;
+            padding: 8px;
             border-radius: 4px;
             font-size: 0.75rem;
             color: #f09a35;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
         .modal-field {
-            font-size: 0.72rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: bold;
             color: #b5bac1;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             text-transform: uppercase;
         }
         .modal-input {
             background-color: #1e1f22;
-            padding: 8px 10px;
-            border-radius: 4px;
+            padding: 8px;
+            border-radius: 3px;
             font-size: 0.85rem;
             color: #dbdee1;
             margin-bottom: 12px;
+            border: 1px solid #111;
         }
         .modal-buttons {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            margin-top: 6px;
+            margin-top: 5px;
         }
         .m-btn {
             padding: 6px 16px;
             border-radius: 3px;
             font-size: 0.85rem;
-            font-weight: 600;
         }
         .m-btn-sub { background-color: #5865F2; color: white; }
 
         .discord-embed {
-            border-left: 4px solid #5865F2;
+            border-left: 4px solid #23a55a;
             background-color: var(--discord-embed-bg);
-            padding: 14px;
+            padding: 12px;
             border-radius: 4px;
         }
         .embed-title {
-            font-weight: 700;
+            font-weight: bold;
             color: #fff;
             font-size: 1.05rem;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
         .embed-grid {
             display: flex;
             gap: 30px;
-            margin: 10px 0;
+            margin: 8px 0;
         }
         .embed-label {
-            font-weight: 700;
-            color: #b5bac1;
-            font-size: 0.8rem;
+            font-weight: bold;
+            color: #fff;
+            font-size: 0.85rem;
         }
         .embed-val { font-size: 0.85rem; color: #dbdee1; }
         .plays-box {
             background-color: #1e1f22;
-            padding: 8px;
+            padding: 6px;
             border-radius: 4px;
             font-size: 0.85rem;
+            border: 1px solid #111;
             color: #fff;
-            margin-top: 4px;
-            font-family: 'JetBrains Mono', monospace;
+            margin: 5px 0;
+        }
+        .embed-img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
         }
 
         .search-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 12px;
+            gap: 8px;
+            margin-top: 10px;
         }
         .s-btn {
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 4px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: bold;
             color: white;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .discord-dropdown {
             background-color: #1e1f22;
-            border-radius: 6px;
+            border-radius: 4px;
             padding: 8px 0;
-            border: 1px solid #2b2d31;
+            border: 1px solid #111;
         }
         .dropdown-title {
             font-size: 0.7rem;
-            font-weight: 700;
+            font-weight: bold;
             color: #949ba4;
-            padding: 6px 14px;
+            padding: 4px 12px;
             text-transform: uppercase;
         }
         .dropdown-item {
-            padding: 8px 14px;
+            padding: 6px 12px;
             font-size: 0.9rem;
             color: #dbdee1;
-            transition: background 0.2s;
         }
         .dropdown-item:hover {
             background-color: #5865F2;
             color: #fff;
+            cursor: pointer;
         }
 
         .settings-box {
             background-color: var(--discord-embed-bg);
-            padding: 14px;
+            padding: 12px;
             border-radius: 4px;
-            border-left: 4px solid #949ba4;
+            border-left: 4px solid #80848e;
         }
         .set-title {
             color: #fff;
-            font-weight: 700;
-            margin-bottom: 6px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
         }
         .set-btn {
             background-color: #5865F2;
             color: white;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 4px;
             display: inline-flex;
             align-items: center;
+            gap: 6px;
             font-size: 0.85rem;
-            margin-top: 12px;
-            font-weight: 600;
+            margin-top: 10px;
+            font-weight: 500;
         }
 
-        /* FOOTER */
+        /* Подвал */
         footer {
-            background-color: #020203;
-            padding: 50px 20px;
+            background-color: #050508;
+            padding: 40px 20px;
             text-align: center;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
             color: var(--text-muted);
             font-size: 0.95rem;
         }
@@ -376,39 +359,31 @@
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: color 0.2s;
-            font-weight: 600;
+            transition: color 0.2s ease;
         }
         .footer-links a:hover {
-            color: var(--accent-glow);
+            color: #9d4edd;
         }
 
-        /* MOBILE RESPONSIVENESS */
-        @media (max-width: 900px) {
+        /* Адаптивность для мобилок */
+        @media (max-width: 950px) {
             .hero-section {
                 flex-direction: column;
                 text-align: center;
-                gap: 30px;
+                gap: 40px;
                 padding: 100px 20px 60px 20px;
             }
             .hero-text-container {
                 align-items: center;
                 text-align: center;
             }
-            .btn-container {
-                justify-content: center;
-            }
             .command-row, .command-row.reverse {
                 flex-direction: column;
                 text-align: center;
-                gap: 30px;
             }
             .bot-logo {
-                width: 220px;
-                height: 220px;
-            }
-            h1 {
-                font-size: 3.5rem;
+                width: 240px;
+                height: 240px;
             }
         }
     </style>
@@ -416,83 +391,117 @@
 <body>
 
     <section class="hero-section">
-        <div class="logo-container" data-aos="zoom-in" data-aos-duration="1000">
+        <div class="logo-container" data-aos="zoom-in" data-aos-duration="1200">
             <div class="bot-logo"></div>
         </div>
 
-        <div class="hero-text-container" data-aos="fade-left" data-aos-duration="1000">
+        <div class="hero-text-container" data-aos="fade-left" data-aos-duration="1200">
             <h1>Cosmo</h1>
-            <p class="description">Ультимативный сервис для поиска напарников и друзей в Discord. Минималистичный дизайн, мультиязычность и поиск за пару кликов.</p>
+            <p class="description">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
 
             <div class="btn-container">
-                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Добавить бота</a>
-                <a class="btn btn-secondary" href="https://discord.gg/vvkeV3bvt" target="_blank">Сервер поддержки</a>
+                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Bot</a>
+                <a class="btn btn-secondary" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
             </div>
         </div>
     </section>
 
     <section class="commands-section">
-        <h2 class="section-title" data-aos="fade-down">🚀 Команды бота</h2>
+        <h2 class="section-title" data-aos="fade-down">🚀 Bot Commands</h2>
 
-        <div class="command-row" data-aos="fade-right" data-aos-duration="800">
+        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/register</div>
-                <p class="command-desc">Создание личной игровой карточки. Укажи имя, возраст, страну, любимые игры и био о себе прямо во всплывающем окне Discord.</p>
+                <div class="command-name">1. /register</div>
+                <p class="command-desc">Открывает удобное диалоговое окно прямо внутри Discord. Заполни своё имя, возраст, страну, укажи игры через запятую и краткую информацию о себе, чтобы создать личную карточку.</p>
             </div>
             <div class="command-visual">
                 <div class="discord-modal">
-                    <div class="modal-header">Создание профиля Cosmo</div>
-                    <div class="modal-warning">⚠️ Форма отправляется боту Cosmo. Не указывайте личные пароли.</div>
-                    <div class="modal-field">Имя *</div>
-                    <div class="modal-input">Player</div>
-                    <div class="modal-field">Возраст *</div>
-                    <div class="modal-input">18</div>
-                    <div class="modal-field">Игры (через запятую)</div>
-                    <div class="modal-input">GTA 5 RP, Valorant, CS2</div>
+                    <div class="modal-header">Create your Cosmo Profile</div>
+                    <div class="modal-warning">⚠️ This form will be submitted to Cosmo. Do not share passwords or other sensitive information.</div>
+                    <div class="modal-field">Name *</div>
+                    <div class="modal-input">Cosmo</div>
+                    <div class="modal-field">Age (14+) *</div>
+                    <div class="modal-input">67</div>
+                    <div class="modal-field">Country (Capitalized) *</div>
+                    <div class="modal-input">Country</div>
+                    <div class="modal-field">Games you play (comma-separated)</div>
+                    <div class="modal-input">GTA5, VALORANT</div>
+                    <div class="modal-field">About you / Bio</div>
+                    <div class="modal-input" style="height: 40px;">Cosmo bot</div>
                     <div class="modal-buttons">
-                        <span class="m-btn" style="color:#fff;">Отмена</span>
-                        <span class="m-btn m-btn-sub">Отправить</span>
+                        <span class="m-btn" style="color:#fff;">Cancel</span>
+                        <span class="m-btn m-btn-sub">Submit</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="800">
+        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/profile</div>
-                <p class="command-desc">Просмотр твоего текущего игрового профиля. Красивая карточка отображает установленные параметры, пол, описание и список активных игр.</p>
+                <div class="command-name">2. /profile</div>
+                <p class="command-desc">Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку твоего аккаунта.</p>
             </div>
             <div class="command-visual">
                 <div class="discord-embed">
-                    <div class="embed-title">Профиль: Player, 18 (Израиль)</div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Ищу напарников для ежедневных каток!</div>
+                    <div class="embed-title">My Profile: Cosmo, 67 (Country)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo bot</div>
                     <div class="embed-grid">
                         <div>
-                            <div class="embed-label">Пол:</div>
-                            <div class="embed-val">Мужской</div>
+                            <div class="embed-label">Gender:</div>
+                            <div class="embed-val">M</div>
                         </div>
                         <div>
-                            <div class="embed-label">Ищу:</div>
-                            <div class="embed-val">Всех</div>
+                            <div class="embed-label">Looking for:</div>
+                            <div class="embed-val">Anyone</div>
                         </div>
                     </div>
-                    <div class="embed-label" style="margin-top: 8px;">Играет в:</div>
-                    <div class="plays-box">GTA 5 RP, Valorant, CS2</div>
+                    <div class="embed-label" style="margin-top: 8px;">Plays:</div>
+                    <div class="plays-box">GTA5, VALORANT</div>
+                    <img src="logo.png%202.png" class="embed-img" alt="Profile Avatar">
                 </div>
             </div>
         </div>
 
-        <div class="command-row" data-aos="fade-right" data-aos-duration="800">
+        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/search</div>
-                <p class="command-desc">Умный поиск тиммейтов. Cosmo подбирает пользователей по общим интересам и играм. Ставь 💖 Like, пропускай 👎 Skip или отправляй жалобу ⚠️ Report.</p>
+                <div class="command-name">3. /edit_profile</div>
+                <p class="command-desc">Позволяет быстро изменить любой конкретный параметр твоей анкеты. Выбери из выпадающего меню нужную опцию: имя, возраст, описание, страну, список игр или предпочтения по поиску.</p>
             </div>
             <div class="command-visual">
-                <div class="discord-embed" style="border-left-color: #23a55a;">
-                    <div class="embed-title">🔍 Напарник: Alex, 19</div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Готов ворваться в рейтинговые матчи.</div>
-                    <div class="embed-label">Игры:</div>
-                    <div class="plays-box">GTA 5 RP, CS2</div>
+                <div class="discord-dropdown">
+                    <div class="dropdown-title">Options</div>
+                    <div class="dropdown-item">name</div>
+                    <div class="dropdown-item">age</div>
+                    <div class="dropdown-item">description</div>
+                    <div class="dropdown-item">country</div>
+                    <div class="dropdown-item">games</div>
+                    <div class="dropdown-item">looking_for</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
+            <div class="command-text">
+                <div class="command-name">4. /search</div>
+                <p class="command-desc">Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!</p>
+            </div>
+            <div class="command-visual">
+                <div class="discord-embed" style="border-left-color: #00b0f4;">
+                    <div class="embed-title">🔍 Ya, 52 (Country)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo Bot</div>
+                    <div class="embed-grid">
+                        <div>
+                            <div class="embed-label">Gender:</div>
+                            <div class="embed-val">M</div>
+                        </div>
+                        <div>
+                            <div class="embed-label">Looking for:</div>
+                            <div class="embed-val">Anyone</div>
+                        </div>
+                    </div>
+                    <div class="embed-label" style="margin-top: 8px;">Plays:</div>
+                    <div class="plays-box">GTA5, VALORANT</div>
+                    <img src="logo.png%202.png" class="embed-img" alt="Search Result">
                 </div>
                 <div class="search-buttons">
                     <span class="s-btn" style="background-color: #248046;">💖 Like</span>
@@ -502,32 +511,32 @@
             </div>
         </div>
 
-        <div class="command-row reverse" data-aos="fade-left" data-aos-duration="800">
+        <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
-                <div class="command-name">/settings</div>
-                <p class="command-desc">Настройки конфигурации. Быстрое переключение языка интерфейса бота под свои предпочтения.</p>
+                <div class="command-name">5. /settings</div>
+                <p class="command-desc">Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения.</p>
             </div>
             <div class="command-visual">
                 <div class="settings-box">
-                    <div class="set-title">⚙️ Настройки Cosmo</div>
-                    <div class="embed-val">Выберите параметр для изменения:</div>
+                    <div class="set-title">⚙️ Cosmo Settings</div>
+                    <div class="embed-val">Select what you want to change:</div>
                 </div>
-                <div class="set-btn">🌐 Изменить язык</div>
+                <div class="set-btn">🌐 Change Language</div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-links">
-            <a href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Пригласить Cosmo</a>
-            <a href="https://discord.gg/vvkeV3bvt" target="_blank">Сервер поддержки</a>
+            <a href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Cosmo</a>
+            <a href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
         </div>
-        <p>&copy; 2026 Cosmo Bot. Все права защищены.</p>
+        <p>&copy; 2026 Cosmo Bot. All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, duration: 900 });
+        AOS.init({ once: true });
     </script>
 </body>
 </html>
