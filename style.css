@@ -478,3 +478,62 @@ footer {
         height: 240px;
     }
 }
+
+/* LANGUAGE SELECTOR */
+.auth-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.lang-menu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    overflow: hidden;
+    min-width: 130px;
+    z-index: 1001;
+}
+
+.lang-option {
+    padding: 10px 15px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lang-option:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}

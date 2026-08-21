@@ -18,19 +18,31 @@
             </a>
 
             <div class="auth-section">
+                <!-- Выбор языка -->
+                <div class="lang-dropdown">
+                    <button class="lang-btn" onclick="toggleLangMenu()">
+                        🌐 <span id="current-lang">EN</span> ▾
+                    </button>
+                    <div id="lang-menu" class="lang-menu hidden">
+                        <div class="lang-option" onclick="setLanguage('en')">English (EN)</div>
+                        <div class="lang-option" onclick="setLanguage('ru')">Русский (RU)</div>
+                        <div class="lang-option" onclick="setLanguage('es')">Español (ES)</div>
+                    </div>
+                </div>
+
                 <!-- Кнопка входа -->
                 <button id="login-btn" class="btn btn-discord" onclick="loginWithDiscord()">
                     <svg class="discord-icon" viewBox="0 0 127.14 96.36">
                         <path fill="currentColor" d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a74.57 74.57 0 0 0 64.3 0c.87.68 1.76 1.36 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.15ZM42.45 65.69c-6.28 0-11.41-5.77-11.41-12.83s5.01-12.83 11.41-12.83c6.45 0 11.53 5.8 11.41 12.83 0 7.06-4.96 12.83-11.41 12.83Zm42.24 0c-6.28 0-11.41-5.77-11.41-12.83s5.01-12.83 11.41-12.83c6.45 0 11.53 5.8 11.41 12.83 0 7.06-4.96 12.83-11.41 12.83Z"/>
                     </svg>
-                    <span>Login</span>
+                    <span id="txt-login">Login</span>
                 </button>
 
                 <!-- Профиль (скрыт по умолчанию) -->
                 <div id="user-profile" class="user-profile hidden">
                     <img id="user-avatar" src="" alt="Avatar" class="user-avatar">
                     <span id="user-name" class="user-name"></span>
-                    <button class="logout-btn" onclick="logout()">Exit</button>
+                    <button class="logout-btn" onclick="logout()" id="txt-exit">Exit</button>
                 </div>
             </div>
         </div>
@@ -43,23 +55,23 @@
 
         <div class="hero-text-container" data-aos="fade-left" data-aos-duration="1200">
             <h1>Cosmo</h1>
-            <p class="description">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
+            <p class="description" id="txt-hero-desc">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
 
             <div class="btn-container">
-                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Bot</a>
-                <a class="btn btn-secondary" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
+                <a class="btn btn-primary" id="txt-invite-btn" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Bot</a>
+                <a class="btn btn-secondary" id="txt-support-btn" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
             </div>
         </div>
     </section>
 
     <section class="commands-section">
-        <h2 class="section-title" data-aos="fade-down">🚀 Bot Commands</h2>
+        <h2 class="section-title" data-aos="fade-down" id="txt-cmd-title">🚀 Bot Commands</h2>
 
         <!-- 1. REGISTER -->
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">1. /register</div>
-                <p class="command-desc">Открывает удобное диалоговое окно прямо внутри Discord. Заполни своё имя, возраст, страну, укажи игры через запятую и краткую информацию о себе, чтобы создать личную карточку.</p>
+                <p class="command-desc" id="txt-cmd-reg-desc">Opens a convenient dialog modal inside Discord. Fill in your name, age, country, games (comma-separated), and a short bio to build your gaming profile.</p>
             </div>
             <div class="command-visual">
                 <div class="discord-modal">
@@ -83,11 +95,11 @@
             </div>
         </div>
 
-        <!-- 2. PROFILE (ОБНОВЛЕННЫЙ С КНОПКОЙ EDIT) -->
+        <!-- 2. PROFILE -->
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">2. /profile</div>
-                <p class="command-desc">Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку. Под карточкой доступна кнопка быстрых настроек для изменения любого параметра анкеты в один клик!</p>
+                <p class="command-desc" id="txt-cmd-prof-desc">Displays your current player profile as an embed card. Shows gender, bio, active games, and avatar. Includes an instant quick-settings button underneath to edit your profile in one click!</p>
             </div>
             <div class="command-visual">
                 <div class="discord-embed">
@@ -105,9 +117,8 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Profile Avatar">
+                    <img src="CosmoLogo.png" class="embed-img" alt="Profile Avatar">
                 </div>
-                <!-- Кнопка редактирования профиля -->
                 <div class="profile-buttons" style="margin-top: 10px;">
                     <span class="s-btn" style="background-color: #4f545c; cursor: pointer;">✏️ Edit Profile</span>
                 </div>
@@ -118,7 +129,7 @@
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">3. /search</div>
-                <p class="command-desc">Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!</p>
+                <p class="command-desc" id="txt-cmd-search-desc">Next-generation global teammate matchmaking. Cosmo instantly matches players who share your active games. No spam — real users only. Browse profiles, hit 💖 Like, skip via 👎 Skip, and build your team in real time!</p>
             </div>
             <div class="command-visual">
                 <div class="discord-embed" style="border-left-color: #00b0f4;">
@@ -136,7 +147,7 @@
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
                     <div class="plays-box">GTA5, VALORANT</div>
-                    <img src="logo.png%202.png" class="embed-img" alt="Search Result">
+                    <img src="CosmoLogo.png" class="embed-img" alt="Search Result">
                 </div>
                 <div class="search-buttons">
                     <span class="s-btn" style="background-color: #248046;">💖 Like</span>
@@ -150,7 +161,7 @@
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">4. /settings</div>
-                <p class="command-desc">Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения.</p>
+                <p class="command-desc" id="txt-cmd-set-desc">Bot configuration menu. Allows you to instantly switch interface language preferences inside Discord.</p>
             </div>
             <div class="command-visual">
                 <div class="settings-box">
@@ -164,8 +175,8 @@
 
     <footer>
         <div class="footer-links">
-            <a href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Cosmo</a>
-            <a href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
+            <a id="txt-foot-invite" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Cosmo</a>
+            <a id="txt-foot-support" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
         </div>
         <p>&copy; 2026 Cosmo Bot. All rights reserved.</p>
     </footer>
@@ -174,6 +185,71 @@
     <script>
         AOS.init({ once: true });
 
+        // --- МУЛЬТИЯЗЫЧНОСТЬ ---
+        const translations = {
+            en: {
+                login: "Login",
+                exit: "Exit",
+                heroDesc: "A sleek, minimalist, and multilingual friends and teammates bot for Discord.",
+                inviteBtn: "Invite Bot",
+                supportBtn: "Support Server",
+                cmdTitle: "🚀 Bot Commands",
+                regDesc: "Opens a convenient dialog modal inside Discord. Fill in your name, age, country, games (comma-separated), and a short bio to build your gaming profile.",
+                profDesc: "Displays your current player profile as an embed card. Shows gender, bio, active games, and avatar. Includes an instant quick-settings button underneath to edit your profile in one click!",
+                searchDesc: "Next-generation global teammate matchmaking. Cosmo instantly matches players who share your active games. No spam — real users only. Browse profiles, hit 💖 Like, skip via 👎 Skip, and build your team in real time!",
+                setDesc: "Bot configuration menu. Allows you to instantly switch interface language preferences inside Discord."
+            },
+            ru: {
+                login: "Войти",
+                exit: "Выйти",
+                heroDesc: "Стильный, минималистичный и мультиязычный бот для поиска друзей и тиммейтов в Discord.",
+                inviteBtn: "Добавить бота",
+                supportBtn: "Сервер поддержки",
+                cmdTitle: "🚀 Команды бота",
+                regDesc: "Открывает удобное диалоговое окно прямо внутри Discord. Заполни своё имя, возраст, страну, укажи игры через запятую и краткую информацию о себе, чтобы создать личную карточку.",
+                profDesc: "Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку. Под карточкой доступна кнопка быстрых настроек для изменения любого параметра анкеты в один клик!",
+                searchDesc: "Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!",
+                setDesc: "Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения."
+            },
+            es: {
+                login: "Iniciar sesión",
+                exit: "Salir",
+                heroDesc: "Un bot elegante, minimalista и multilingüe para buscar amigos y compañeros de equipo en Discord.",
+                inviteBtn: "Invitar Bot",
+                supportBtn: "Servidor de Soporte",
+                cmdTitle: "🚀 Comandos del Bot",
+                regDesc: "Abre una ventana emergente en Discord. Completa tu имя, edad, país, juegos (separados por comas) y una breve biografía para crear tu perfil.",
+                profDesc: "Muestra tu perfil de jugador en una tarjeta interactiva. Muestra tu género, biografía, juegos activos y avatar. ¡Incluye un botón de configuración rápida debajo para editar tu perfil en un clic!",
+                searchDesc: "Búsqueda global de compañeros de equipo de nueva generación. Cosmo encuentra al instante jugadores que juegan a tus mismos juegos. ¡Sin spam, solo usuarios reales!",
+                setDesc: "Menú de configuración del bot. Te permite cambiar al instante las preferencias de idioma de la interfaz en Discord."
+            }
+        };
+
+        function toggleLangMenu() {
+            document.getElementById('lang-menu').classList.toggle('hidden');
+        }
+
+        function setLanguage(lang) {
+            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            localStorage.setItem('cosmo_lang', lang);
+            document.getElementById('lang-menu').classList.add('hidden');
+
+            const t = translations[lang];
+            document.getElementById('txt-login').innerText = t.login;
+            document.getElementById('txt-exit').innerText = t.exit;
+            document.getElementById('txt-hero-desc').innerText = t.heroDesc;
+            document.getElementById('txt-invite-btn').innerText = t.inviteBtn;
+            document.getElementById('txt-support-btn').innerText = t.supportBtn;
+            document.getElementById('txt-foot-invite').innerText = t.inviteBtn;
+            document.getElementById('txt-foot-support').innerText = t.supportBtn;
+            document.getElementById('txt-cmd-title').innerText = t.cmdTitle;
+            document.getElementById('txt-cmd-reg-desc').innerText = t.regDesc;
+            document.getElementById('txt-cmd-prof-desc').innerText = t.profDesc;
+            document.getElementById('txt-cmd-search-desc').innerText = t.searchDesc;
+            document.getElementById('txt-cmd-set-desc').innerText = t.setDesc;
+        }
+
+        // --- DISCORD OAUTH2 ---
         const CLIENT_ID = '1517937739688054856';
         const REDIRECT_URI = window.location.origin + window.location.pathname;
 
@@ -221,7 +297,11 @@
             document.getElementById('user-profile').classList.add('hidden');
         }
 
-        window.onload = checkAuth;
+        window.onload = () => {
+            checkAuth();
+            const savedLang = localStorage.getItem('cosmo_lang') || 'en';
+            setLanguage(savedLang);
+        };
     </script>
 </body>
 </html>
