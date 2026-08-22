@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <!-- Шапка с Навигацией -->
+    <!-- Шапка с Навигацией и Авторизацией -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
@@ -18,11 +18,6 @@
             </a>
 
             <div class="auth-section">
-                <!-- Кнопка вызова окна Premium / Support -->
-                <button class="btn-premium-nav" onclick="openPremiumModal()">
-                    💎 <span id="txt-premium-btn">Premium</span>
-                </button>
-
                 <!-- Выбор языка -->
                 <div class="lang-dropdown">
                     <button class="lang-btn" onclick="toggleLangMenu()">
@@ -43,7 +38,7 @@
                     <span id="txt-login">Login</span>
                 </button>
 
-                <!-- Профиль -->
+                <!-- Профиль (скрыт по умолчанию) -->
                 <div id="user-profile" class="user-profile hidden">
                     <img id="user-avatar" src="" alt="Avatar" class="user-avatar">
                     <span id="user-name" class="user-name"></span>
@@ -53,7 +48,6 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="logo-container" data-aos="zoom-in" data-aos-duration="1200">
             <div class="bot-logo"></div>
@@ -70,7 +64,6 @@
         </div>
     </section>
 
-    <!-- COMMANDS SECTION -->
     <section class="commands-section">
         <h2 class="section-title" data-aos="fade-down" id="txt-cmd-title">🚀 Bot Commands</h2>
 
@@ -78,22 +71,22 @@
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">1. /register</div>
-                <p class="command-desc" id="txt-cmd-reg-desc">Opens a convenient dialog modal inside Discord. Fill in your details to build your profile.</p>
+                <p class="command-desc" id="txt-cmd-reg-desc">Opens a convenient dialog modal inside Discord. Fill in your name, age, country, games (comma-separated), and a short bio to build your gaming profile.</p>
             </div>
             <div class="command-visual">
                 <div class="discord-modal">
                     <div class="modal-header">Create your Cosmo Profile</div>
-                    <div class="modal-warning">⚠️ This form will be submitted to Cosmo. Do not share passwords.</div>
+                    <div class="modal-warning">⚠️ This form will be submitted to Cosmo. Do not share passwords or other sensitive information.</div>
                     <div class="modal-field">Name *</div>
                     <div class="modal-input">Cosmo</div>
                     <div class="modal-field">Age (14+) *</div>
                     <div class="modal-input">67</div>
-                    <div class="modal-field">Country *</div>
-                    <div class="modal-input">Israel</div>
-                    <div class="modal-field">Games</div>
+                    <div class="modal-field">Country (Capitalized) *</div>
+                    <div class="modal-input">Country</div>
+                    <div class="modal-field">Games you play (comma-separated)</div>
                     <div class="modal-input">GTA5, VALORANT</div>
                     <div class="modal-field">About you / Bio</div>
-                    <div class="modal-input" style="height: 40px;">Cosmo bot gamer</div>
+                    <div class="modal-input" style="height: 40px;">Cosmo bot</div>
                     <div class="modal-buttons">
                         <span class="m-btn" style="color:#fff;">Cancel</span>
                         <span class="m-btn m-btn-sub">Submit</span>
@@ -102,28 +95,16 @@
             </div>
         </div>
 
-        <!-- 2. PROFILE (PREMIUM ENHANCED) -->
+        <!-- 2. PROFILE -->
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">2. /profile</div>
-                <p class="command-desc" id="txt-cmd-prof-desc">Displays your player card. Premium users get custom embed colors, exclusive badges, direct Twitch/YouTube/Steam links, and priority search visibility!</p>
+                <p class="command-desc" id="txt-cmd-prof-desc">Displays your current player profile as an embed card. Shows gender, bio, active games, and avatar. Includes an instant quick-settings button underneath to edit your profile in one click!</p>
             </div>
             <div class="command-visual">
-                <!-- Кастомная боковая полоса (HEX: #9d4edd) для Premium -->
-                <div class="discord-embed premium-embed" style="border-left-color: #9d4edd;">
-                    <div class="embed-title">
-                        <span>Cosmo, 67 (Israel)</span>
-                        <span class="badge-premium" title="Premium User">💎 Premium</span>
-                    </div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Top streamer and casual gamer. Catch me live!</div>
-
-                    <!-- Прямые ссылки -->
-                    <div class="social-links-box">
-                        <a href="#" class="social-link twitch" onclick="return false;">🟣 Twitch</a>
-                        <a href="#" class="social-link youtube" onclick="return false;">🔴 YouTube</a>
-                        <a href="#" class="social-link steam" onclick="return false;">🎮 Steam</a>
-                    </div>
-
+                <div class="discord-embed">
+                    <div class="embed-title">My Profile: Cosmo, 67 (Country)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo bot</div>
                     <div class="embed-grid">
                         <div>
                             <div class="embed-label">Gender:</div>
@@ -135,7 +116,7 @@
                         </div>
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
-                    <div class="plays-box">GTA5, VALORANT, Dota 2</div>
+                    <div class="plays-box">GTA5, VALORANT</div>
                     <img src="CosmoLogo.png" class="embed-img" alt="Profile Avatar">
                 </div>
                 <div class="profile-buttons" style="margin-top: 10px;">
@@ -148,12 +129,12 @@
         <div class="command-row" data-aos="fade-right" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">3. /search</div>
-                <p class="command-desc" id="txt-cmd-search-desc">Next-generation global teammate matchmaking. Premium profiles are displayed first in search results!</p>
+                <p class="command-desc" id="txt-cmd-search-desc">Next-generation global teammate matchmaking. Cosmo instantly matches players who share your active games. No spam — real users only. Browse profiles, hit 💖 Like, skip via 👎 Skip, and build your team in real time!</p>
             </div>
             <div class="command-visual">
                 <div class="discord-embed" style="border-left-color: #00b0f4;">
-                    <div class="embed-title">🔍 Ya, 52 (Israel)</div>
-                    <div class="embed-val" style="margin-bottom: 8px;">Looking for CS2 team</div>
+                    <div class="embed-title">🔍 Ya, 52 (Country)</div>
+                    <div class="embed-val" style="margin-bottom: 8px;">Cosmo Bot</div>
                     <div class="embed-grid">
                         <div>
                             <div class="embed-label">Gender:</div>
@@ -165,7 +146,7 @@
                         </div>
                     </div>
                     <div class="embed-label" style="margin-top: 8px;">Plays:</div>
-                    <div class="plays-box">CS2, GTA5</div>
+                    <div class="plays-box">GTA5, VALORANT</div>
                     <img src="CosmoLogo.png" class="embed-img" alt="Search Result">
                 </div>
                 <div class="search-buttons">
@@ -180,7 +161,7 @@
         <div class="command-row reverse" data-aos="fade-left" data-aos-duration="1000">
             <div class="command-text">
                 <div class="command-name">4. /settings</div>
-                <p class="command-desc" id="txt-cmd-set-desc">Bot configuration menu. Allows you to switch language preferences or set your custom embed HEX color.</p>
+                <p class="command-desc" id="txt-cmd-set-desc">Bot configuration menu. Allows you to instantly switch interface language preferences inside Discord.</p>
             </div>
             <div class="command-visual">
                 <div class="settings-box">
@@ -191,48 +172,6 @@
             </div>
         </div>
     </section>
-
-    <!-- PREMIUM MODAL WINDOW -->
-    <div id="premium-modal" class="modal-overlay hidden">
-        <div class="modal-card">
-            <button class="modal-close-btn" onclick="closePremiumModal()">&times;</button>
-            <div class="modal-card-header">
-                <h2>💎 Premium / Support</h2>
-                <p id="txt-modal-sub">Get exclusive features and boost your search ranking!</p>
-            </div>
-
-            <!-- Список преимуществ -->
-            <ul class="premium-features-list">
-                <li>⭐ <strong>Приоритетный показ:</strong> Карточки Premium-пользователей показываются первыми.</li>
-                <li>💎 <strong>Эксклюзивный значок:</strong> Иконка Premium в вашей анкете.</li>
-                <li>🔗 <strong>Прямые ссылки:</strong> Ссылки на Twitch/YouTube/Steam прямо в био.</li>
-                <li>🎨 <strong>Кастомный цвет:</strong> Выбор любого цвета боковой полосы (HEX-код).</li>
-            </ul>
-
-            <!-- Выбор планов -->
-            <div class="premium-plans-grid">
-                <!-- План 1 -->
-                <div class="plan-card">
-                    <div class="plan-days">4 Дня</div>
-                    <div class="plan-price">4$</div>
-                    <button class="btn-buy" onclick="buyPremium('4$ - 4 Days')">Купить</button>
-                </div>
-                <!-- План 2 (Популярный) -->
-                <div class="plan-card popular">
-                    <div class="popular-badge">POPULAR</div>
-                    <div class="plan-days">8 Дней</div>
-                    <div class="plan-price">8$</div>
-                    <button class="btn-buy" onclick="buyPremium('8$ - 8 Days')">Купить</button>
-                </div>
-                <!-- План 3 -->
-                <div class="plan-card">
-                    <div class="plan-days">12 Дней</div>
-                    <div class="plan-price">12$</div>
-                    <button class="btn-buy" onclick="buyPremium('12$ - 12 Days')">Купить</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <footer>
         <div class="footer-links">
@@ -251,41 +190,38 @@
             en: {
                 login: "Login",
                 exit: "Exit",
-                premiumBtn: "Premium",
                 heroDesc: "A sleek, minimalist, and multilingual friends and teammates bot for Discord.",
                 inviteBtn: "Invite Bot",
                 supportBtn: "Support Server",
                 cmdTitle: "🚀 Bot Commands",
-                regDesc: "Opens a convenient dialog modal inside Discord. Fill in your details to build your gaming profile.",
-                profDesc: "Displays your player card. Premium users get custom embed colors, exclusive badges, direct Twitch/YouTube/Steam links, and priority search visibility!",
-                searchDesc: "Next-generation global teammate matchmaking. Premium profiles are displayed first in search results!",
-                setDesc: "Bot configuration menu. Allows you to switch language preferences or set your custom embed HEX color."
+                regDesc: "Opens a convenient dialog modal inside Discord. Fill in your name, age, country, games (comma-separated), and a short bio to build your gaming profile.",
+                profDesc: "Displays your current player profile as an embed card. Shows gender, bio, active games, and avatar. Includes an instant quick-settings button underneath to edit your profile in one click!",
+                searchDesc: "Next-generation global teammate matchmaking. Cosmo instantly matches players who share your active games. No spam — real users only. Browse profiles, hit 💖 Like, skip via 👎 Skip, and build your team in real time!",
+                setDesc: "Bot configuration menu. Allows you to instantly switch interface language preferences inside Discord."
             },
             ru: {
                 login: "Войти",
                 exit: "Выйти",
-                premiumBtn: "Премиум",
                 heroDesc: "Стильный, минималистичный и мультиязычный бот для поиска друзей и тиммейтов в Discord.",
                 inviteBtn: "Добавить бота",
                 supportBtn: "Сервер поддержки",
                 cmdTitle: "🚀 Команды бота",
-                regDesc: "Открывает удобное диалоговое окно внутри Discord. Заполни свои данные для создания игровой карточки.",
-                profDesc: "Выводит твой игровой профиль. Premium-пользователи получают кастомный цвет эмбеда, эксклюзивную иконку 💎, прямые ссылки на Twitch/YouTube/Steam и приоритет в поиске!",
-                searchDesc: "Глобальный поиск тиммейтов. Карточки Premium-пользователей показывают первыми в выдаче!",
-                setDesc: "Управление конфигурацией бота. Позволяет сменить язык или задать кастомный HEX-цвет боковой полосы."
+                regDesc: "Открывает удобное диалоговое окно прямо внутри Discord. Заполни своё имя, возраст, страну, укажи игры через запятую и краткую информацию о себе, чтобы создать личную карточку.",
+                profDesc: "Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку. Под карточкой доступна кнопка быстрых настроек для изменения любого параметра анкеты в один клик!",
+                searchDesc: "Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!",
+                setDesc: "Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения."
             },
             es: {
                 login: "Iniciar sesión",
                 exit: "Salir",
-                premiumBtn: "Premium",
-                heroDesc: "Un bot elegante, minimalista y multilingüe para buscar amigos y compañeros de equipo en Discord.",
+                heroDesc: "Un bot elegante, minimalista и multilingüe para buscar amigos y compañeros de equipo en Discord.",
                 inviteBtn: "Invitar Bot",
                 supportBtn: "Servidor de Soporte",
                 cmdTitle: "🚀 Comandos del Bot",
-                regDesc: "Abre una окно emergente en Discord. Completa tus datos para crear tu perfil de jugador.",
-                profDesc: "Muestra tu perfil de jugador. ¡Los usuarios Premium obtienen colores personalizados, insignias exclusivas, enlaces directos a Twitch/YouTube/Steam y prioridad en las búsquedas!",
-                searchDesc: "Búsqueda global de compañeros de equipo. ¡Los perfiles Premium aparecen primero en las búsquedas!",
-                setDesc: "Menú de configuración del bot. Te permite cambiar el idioma o definir un color HEX personalizado."
+                regDesc: "Abre una ventana emergente en Discord. Completa tu имя, edad, país, juegos (separados por comas) y una breve biografía para crear tu perfil.",
+                profDesc: "Muestra tu perfil de jugador en una tarjeta interactiva. Muestra tu género, biografía, juegos activos y avatar. ¡Incluye un botón de configuración rápida debajo para editar tu perfil en un clic!",
+                searchDesc: "Búsqueda global de compañeros de equipo de nueva generación. Cosmo encuentra al instante jugadores que juegan a tus mismos juegos. ¡Sin spam, solo usuarios reales!",
+                setDesc: "Menú de configuración del bot. Te permite cambiar al instante las preferencias de idioma de la interfaz en Discord."
             }
         };
 
@@ -301,7 +237,6 @@
             const t = translations[lang];
             document.getElementById('txt-login').innerText = t.login;
             document.getElementById('txt-exit').innerText = t.exit;
-            document.getElementById('txt-premium-btn').innerText = t.premiumBtn;
             document.getElementById('txt-hero-desc').innerText = t.heroDesc;
             document.getElementById('txt-invite-btn').innerText = t.inviteBtn;
             document.getElementById('txt-support-btn').innerText = t.supportBtn;
@@ -312,20 +247,6 @@
             document.getElementById('txt-cmd-prof-desc').innerText = t.profDesc;
             document.getElementById('txt-cmd-search-desc').innerText = t.searchDesc;
             document.getElementById('txt-cmd-set-desc').innerText = t.setDesc;
-        }
-
-        // --- МОДАЛЬНОЕ ОКНО PREMIUM ---
-        function openPremiumModal() {
-            document.getElementById('premium-modal').classList.remove('hidden');
-        }
-
-        function closePremiumModal() {
-            document.getElementById('premium-modal').classList.add('hidden');
-        }
-
-        function buyPremium(plan) {
-            // Перенаправление на Discord Support сервер или оплату
-            window.open('https://discord.gg/vvkeV3bvt', '_blank');
         }
 
         // --- DISCORD OAUTH2 ---

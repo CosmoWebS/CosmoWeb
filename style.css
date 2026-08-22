@@ -9,8 +9,6 @@
     --discord-embed-bg: #2b2d31;
     --discord-blurple: #5865F2;
     --discord-blurple-hover: #4752C4;
-    --premium-gold: #ffd700;
-    --premium-purple: #9d4edd;
 }
 
 body {
@@ -58,27 +56,6 @@ body {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-}
-
-.btn-premium-nav {
-    background: linear-gradient(135deg, #7b2cbf, #9d4edd);
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.btn-premium-nav:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 22px rgba(157, 78, 221, 0.7);
 }
 
 .btn-discord {
@@ -166,7 +143,7 @@ body {
     width: 360px;
     height: 360px;
     border-radius: 50%;
-    background-image: url('CosmoLogo.png');
+    background-image: url('logo 3.png');
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 55px rgba(75, 0, 130, 0.4);
@@ -298,55 +275,69 @@ h1 {
     transform: scale(1.02);
 }
 
-/* DISCORD EMBED & PREMIUM STYLING */
+/* DISCORD COMPONENTS */
+.discord-modal {
+    background-color: #313338;
+    border-radius: 4px;
+    padding: 15px;
+    border: 1px solid #1e1f22;
+}
+.modal-header {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+}
+.modal-warning {
+    background-color: rgba(240, 154, 53, 0.1);
+    border: 1px solid #f09a35;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #f09a35;
+    margin-bottom: 12px;
+}
+.modal-field {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #b5bac1;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.modal-input {
+    background-color: #1e1f22;
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    color: #dbdee1;
+    margin-bottom: 12px;
+    border: 1px solid #111;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 5px;
+}
+.m-btn {
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+.m-btn-sub { background-color: #5865F2; color: white; }
+
 .discord-embed {
     border-left: 4px solid #23a55a;
     background-color: var(--discord-embed-bg);
     padding: 12px;
     border-radius: 4px;
 }
-
 .embed-title {
     font-weight: bold;
     color: #fff;
     font-size: 1.05rem;
     margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
-
-.badge-premium {
-    background: rgba(157, 78, 221, 0.2);
-    color: var(--premium-purple);
-    border: 1px solid var(--premium-purple);
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-
-.social-links-box {
-    display: flex;
-    gap: 8px;
-    margin: 8px 0;
-    flex-wrap: wrap;
-}
-
-.social-link {
-    font-size: 0.75rem;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.social-link.twitch { background: rgba(145, 70, 255, 0.25); color: #ad7eff; }
-.social-link.youtube { background: rgba(255, 0, 0, 0.25); color: #ff6b6b; }
-.social-link.steam { background: rgba(23, 26, 33, 0.8); color: #66c0f4; }
-
 .embed-grid {
     display: flex;
     gap: 30px;
@@ -391,143 +382,58 @@ h1 {
     gap: 4px;
 }
 
-/* MODAL PREMIUM WINDOW */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    z-index: 2000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.modal-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(157, 78, 221, 0.3);
-    border-radius: 12px;
-    width: 100%;
-    max-width: 550px;
-    padding: 30px;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 1.8rem;
-    cursor: pointer;
-}
-
-.modal-close-btn:hover { color: #fff; }
-
-.modal-card-header h2 {
-    margin: 0 0 8px 0;
-    font-size: 1.8rem;
-    color: #fff;
-}
-
-.modal-card-header p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin: 0 0 20px 0;
-}
-
-.premium-features-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 25px 0;
-    font-size: 0.92rem;
-    line-height: 1.8;
-}
-
-.premium-features-list li {
-    color: #dbdee1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.premium-plans-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.plan-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    position: relative;
-    transition: all 0.2s ease;
-}
-
-.plan-card:hover {
-    border-color: var(--premium-purple);
-    transform: translateY(-3px);
-}
-
-.plan-card.popular {
-    border-color: var(--premium-purple);
-    background: rgba(157, 78, 221, 0.08);
-}
-
-.popular-badge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--premium-purple);
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: bold;
-    padding: 2px 8px;
-    border-radius: 10px;
-}
-
-.plan-days {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 5px;
-}
-
-.plan-price {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 12px;
-}
-
-.btn-buy {
-    background: var(--discord-blurple);
-    color: #fff;
-    border: none;
-    width: 100%;
-    padding: 8px;
+.discord-dropdown {
+    background-color: #1e1f22;
     border-radius: 4px;
-    font-weight: 600;
+    padding: 8px 0;
+    border: 1px solid #111;
+}
+.dropdown-title {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #949ba4;
+    padding: 4px 12px;
+    text-transform: uppercase;
+}
+.dropdown-item {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    color: #dbdee1;
+}
+.dropdown-item:hover {
+    background-color: #5865F2;
+    color: #fff;
     cursor: pointer;
-    transition: background 0.2s ease;
 }
 
-.btn-buy:hover {
-    background: var(--discord-blurple-hover);
+.settings-box {
+    background-color: var(--discord-embed-bg);
+    padding: 12px;
+    border-radius: 4px;
+    border-left: 4px solid #80848e;
+}
+.set-title {
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.set-btn {
+    background-color: #5865F2;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: 500;
 }
 
-/* FOOTER & RESPONSIVE */
+/* FOOTER */
 footer {
     background-color: #050508;
     padding: 40px 20px;
@@ -536,14 +442,55 @@ footer {
     color: var(--text-muted);
     font-size: 0.95rem;
 }
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.footer-links a:hover {
+    color: #9d4edd;
+}
 
+/* RESPONSIVE */
+@media (max-width: 950px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 140px 20px 60px 20px;
+    }
+    .hero-text-container {
+        align-items: center;
+        text-align: center;
+    }
+    .command-row, .command-row.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+    .bot-logo {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+/* LANGUAGE SELECTOR */
 .auth-section {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.lang-dropdown { position: relative; display: inline-block; }
+.lang-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 .lang-btn {
     background: rgba(255, 255, 255, 0.08);
     color: var(--text-main);
@@ -553,7 +500,17 @@ footer {
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
 }
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
 .lang-menu {
     position: absolute;
     top: 110%;
@@ -561,21 +518,22 @@ footer {
     background-color: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     overflow: hidden;
     min-width: 130px;
     z-index: 1001;
 }
+
 .lang-option {
     padding: 10px 15px;
     color: var(--text-muted);
     font-size: 0.88rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
-.lang-option:hover { background-color: var(--accent-color); color: #fff; }
 
-@media (max-width: 950px) {
-    .hero-section { flex-direction: column; text-align: center; gap: 40px; padding: 140px 20px 60px 20px; }
-    .hero-text-container { align-items: center; text-align: center; }
-    .command-row, .command-row.reverse { flex-direction: column; text-align: center; }
-    .premium-plans-grid { grid-template-columns: 1fr; }
+.lang-option:hover {
+    background-color: var(--accent-color);
+    color: #fff;
 }
