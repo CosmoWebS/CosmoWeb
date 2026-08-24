@@ -20,7 +20,7 @@
             <div class="auth-section">
                 <!-- Выбор языка -->
                 <div class="lang-dropdown">
-                    <button class="lang-btn" onclick="toggleLangMenu()">
+                    <button class="lang-btn" onclick="toggleLangMenu(event)">
                         🌐 <span id="current-lang">EN</span> ▾
                     </button>
                     <div id="lang-menu" class="lang-menu hidden">
@@ -58,8 +58,8 @@
             <p class="description" id="txt-hero-desc">A sleek, minimalist, and multilingual friends and teammates bot for Discord.</p>
 
             <div class="btn-container">
-                <a class="btn btn-primary" id="txt-invite-btn" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Bot</a>
-                <a class="btn btn-secondary" id="txt-support-btn" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
+                <a class="btn btn-primary" id="txt-invite-btn" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank" rel="noopener noreferrer">Invite Bot</a>
+                <a class="btn btn-secondary" id="txt-support-btn" href="https://discord.gg/vvkeV3bvt" target="_blank" rel="noopener noreferrer">Support Server</a>
             </div>
         </div>
     </section>
@@ -175,8 +175,8 @@
 
     <footer>
         <div class="footer-links">
-            <a id="txt-foot-invite" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank">Invite Cosmo</a>
-            <a id="txt-foot-support" href="https://discord.gg/vvkeV3bvt" target="_blank">Support Server</a>
+            <a id="txt-foot-invite" href="https://discord.com/oauth2/authorize?client_id=1517937739688054856&scope=bot%20applications.commands&permissions=0" target="_blank" rel="noopener noreferrer">Invite Cosmo</a>
+            <a id="txt-foot-support" href="https://discord.gg/vvkeV3bvt" target="_blank" rel="noopener noreferrer">Support Server</a>
         </div>
         <p>&copy; 2026 Cosmo Bot. All rights reserved.</p>
     </footer>
@@ -214,18 +214,19 @@
             es: {
                 login: "Iniciar sesión",
                 exit: "Salir",
-                heroDesc: "Un bot elegante, minimalista и multilingüe para buscar amigos y compañeros de equipo en Discord.",
+                heroDesc: "Un bot elegante, minimalista y multilingüe para buscar amigos y compañeros de equipo en Discord.",
                 inviteBtn: "Invitar Bot",
                 supportBtn: "Servidor de Soporte",
                 cmdTitle: "🚀 Comandos del Bot",
-                regDesc: "Abre una ventana emergente en Discord. Completa tu имя, edad, país, juegos (separados por comas) y una breve biografía para crear tu perfil.",
+                regDesc: "Abre una ventana emergente en Discord. Completa tu nombre, edad, país, juegos (separados por comas) y una breve biografía para crear tu perfil.",
                 profDesc: "Muestra tu perfil de jugador en una tarjeta interactiva. Muestra tu género, biografía, juegos activos y avatar. ¡Incluye un botón de configuración rápida debajo para editar tu perfil en un clic!",
                 searchDesc: "Búsqueda global de compañeros de equipo de nueva generación. Cosmo encuentra al instante jugadores que juegan a tus mismos juegos. ¡Sin spam, solo usuarios reales!",
                 setDesc: "Menú de configuración del bot. Te permite cambiar al instante las preferencias de idioma de la interfaz en Discord."
             }
         };
 
-        function toggleLangMenu() {
+        function toggleLangMenu(event) {
+            if (event) event.stopPropagation();
             document.getElementById('lang-menu').classList.toggle('hidden');
         }
 
@@ -235,6 +236,8 @@
             document.getElementById('lang-menu').classList.add('hidden');
 
             const t = translations[lang];
+            if (!t) return;
+
             document.getElementById('txt-login').innerText = t.login;
             document.getElementById('txt-exit').innerText = t.exit;
             document.getElementById('txt-hero-desc').innerText = t.heroDesc;
@@ -248,6 +251,14 @@
             document.getElementById('txt-cmd-search-desc').innerText = t.searchDesc;
             document.getElementById('txt-cmd-set-desc').innerText = t.setDesc;
         }
+
+        // Закрытие выпавшего меню при клике в случайное место
+        document.addEventListener('click', (e) => {
+            const langMenu = document.getElementById('lang-menu');
+            if (langMenu && !langMenu.classList.contains('hidden')) {
+                langMenu.classList.add('hidden');
+            }
+        });
 
         // --- DISCORD OAUTH2 ---
         const CLIENT_ID = '1517937739688054856';
