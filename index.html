@@ -18,6 +18,14 @@
             </a>
 
             <div class="auth-section">
+                <!-- Кнопки Premium / Support -->
+                <button class="btn btn-premium-nav" onclick="openModal('premium-modal')">
+                    💎 <span id="txt-nav-premium">Premium</span>
+                </button>
+                <button class="btn btn-support-nav" onclick="openModal('support-modal')">
+                    ❤️ <span id="txt-nav-support">Support</span>
+                </button>
+
                 <!-- Выбор языка -->
                 <div class="lang-dropdown">
                     <button class="lang-btn" onclick="toggleLangMenu(event)">
@@ -181,6 +189,98 @@
         <p>&copy; 2026 Cosmo Bot. All rights reserved.</p>
     </footer>
 
+    <!-- PREMIUM MODAL -->
+    <div id="premium-modal" class="modal-overlay hidden" onclick="closeModalOnOverlay(event, 'premium-modal')">
+        <div class="modal-box" data-aos="zoom-in" data-aos-duration="300">
+            <button class="modal-close" onclick="closeModal('premium-modal')">✕</button>
+
+            <div class="modal-box-header">
+                <span class="modal-box-icon">💎</span>
+                <h2 id="txt-premium-title">Cosmo Premium</h2>
+            </div>
+            <p class="modal-box-subtitle" id="txt-premium-subtitle">Get exclusive features and boost your search ranking!</p>
+
+            <ul class="benefit-list">
+                <li>
+                    <span class="benefit-icon">⭐</span>
+                    <div><strong id="txt-benefit-priority-title">Priority Display:</strong> <span id="txt-benefit-priority-desc">Premium user cards are shown first in search results.</span></div>
+                </li>
+                <li>
+                    <span class="benefit-icon">💎</span>
+                    <div><strong id="txt-benefit-badge-title">Exclusive Badge:</strong> <span id="txt-benefit-badge-desc">A Premium icon on your profile card.</span></div>
+                </li>
+                <li>
+                    <span class="benefit-icon">🔗</span>
+                    <div><strong id="txt-benefit-links-title">Direct Links:</strong> <span id="txt-benefit-links-desc">Attach a Twitch / YouTube / Steam link straight to your bio.</span></div>
+                </li>
+                <li>
+                    <span class="benefit-icon">🎨</span>
+                    <div><strong id="txt-benefit-color-title">Custom Color:</strong> <span id="txt-benefit-color-desc">Choose any sidebar color via HEX code.</span></div>
+                </li>
+            </ul>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-days" id="txt-price-4-days">4 Days</div>
+                    <div class="pricing-amount">$4</div>
+                    <button class="pricing-buy-btn" id="txt-buy-btn-1" onclick="buyPremium(4)">Buy</button>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge" id="txt-popular-badge">POPULAR</div>
+                    <div class="pricing-days" id="txt-price-8-days">8 Days</div>
+                    <div class="pricing-amount">$8</div>
+                    <button class="pricing-buy-btn" id="txt-buy-btn-2" onclick="buyPremium(8)">Buy</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-days" id="txt-price-12-days">12 Days</div>
+                    <div class="pricing-amount">$12</div>
+                    <button class="pricing-buy-btn" id="txt-buy-btn-3" onclick="buyPremium(12)">Buy</button>
+                </div>
+            </div>
+
+            <p class="modal-note" id="txt-premium-note">After payment, Premium is granted automatically to the Discord account you're logged in with. Please log in before purchasing.</p>
+        </div>
+    </div>
+
+    <!-- SUPPORT / DONATE MODAL -->
+    <div id="support-modal" class="modal-overlay hidden" onclick="closeModalOnOverlay(event, 'support-modal')">
+        <div class="modal-box" data-aos="zoom-in" data-aos-duration="300">
+            <button class="modal-close" onclick="closeModal('support-modal')">✕</button>
+
+            <div class="modal-box-header">
+                <span class="modal-box-icon">❤️</span>
+                <h2 id="txt-support-title">Support Cosmo</h2>
+            </div>
+            <p class="modal-box-subtitle" id="txt-support-subtitle">Enjoying Cosmo? Help keep the project alive — every donation helps!</p>
+
+            <div class="donate-options">
+                <a class="donate-option" href="https://boosty.to/REPLACE_ME" target="_blank" rel="noopener noreferrer">
+                    <span class="donate-icon">🚀</span>
+                    <div>
+                        <strong>Boosty</strong><br>
+                        <span class="donate-desc" id="txt-donate-boosty-desc">Monthly support with perks</span>
+                    </div>
+                </a>
+                <a class="donate-option" href="https://www.donationalerts.com/r/REPLACE_ME" target="_blank" rel="noopener noreferrer">
+                    <span class="donate-icon">🎁</span>
+                    <div>
+                        <strong>DonationAlerts</strong><br>
+                        <span class="donate-desc" id="txt-donate-da-desc">One-time donation, any amount</span>
+                    </div>
+                </a>
+                <a class="donate-option" href="https://paypal.me/REPLACE_ME" target="_blank" rel="noopener noreferrer">
+                    <span class="donate-icon">💳</span>
+                    <div>
+                        <strong>PayPal</strong><br>
+                        <span class="donate-desc" id="txt-donate-pp-desc">Quick and simple, worldwide</span>
+                    </div>
+                </a>
+            </div>
+
+            <p class="modal-note" id="txt-support-note">Donations do not include Premium perks. For Premium, use the 💎 Premium button.</p>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true });
@@ -197,7 +297,35 @@
                 regDesc: "Opens a convenient dialog modal inside Discord. Fill in your name, age, country, games (comma-separated), and a short bio to build your gaming profile.",
                 profDesc: "Displays your current player profile as an embed card. Shows gender, bio, active games, and avatar. Includes an instant quick-settings button underneath to edit your profile in one click!",
                 searchDesc: "Next-generation global teammate matchmaking. Cosmo instantly matches players who share your active games. No spam — real users only. Browse profiles, hit 💖 Like, skip via 👎 Skip, and build your team in real time!",
-                setDesc: "Bot configuration menu. Allows you to instantly switch interface language preferences inside Discord."
+                setDesc: "Bot configuration menu. Allows you to instantly switch interface language preferences inside Discord.",
+
+                navPremium: "Premium",
+                navSupport: "Support",
+                premiumTitle: "Cosmo Premium",
+                premiumSubtitle: "Get exclusive features and boost your search ranking!",
+                benefitPriorityTitle: "Priority Display:",
+                benefitPriorityDesc: "Premium user cards are shown first in search results.",
+                benefitBadgeTitle: "Exclusive Badge:",
+                benefitBadgeDesc: "A Premium icon on your profile card.",
+                benefitLinksTitle: "Direct Links:",
+                benefitLinksDesc: "Attach a Twitch / YouTube / Steam link straight to your bio.",
+                benefitColorTitle: "Custom Color:",
+                benefitColorDesc: "Choose any sidebar color via HEX code.",
+                popularBadge: "POPULAR",
+                price4Days: "4 Days",
+                price8Days: "8 Days",
+                price12Days: "12 Days",
+                buyBtn: "Buy",
+                premiumNote: "After payment, Premium is granted automatically to the Discord account you're logged in with. Please log in before purchasing.",
+                loginFirstAlert: "Please log in with Discord first, so we know which account to grant Premium to!",
+                paymentNotConfigured: "This payment option isn't set up yet. Please check back soon!",
+
+                supportTitle: "Support Cosmo",
+                supportSubtitle: "Enjoying Cosmo? Help keep the project alive — every donation helps!",
+                donateBoostyDesc: "Monthly support with perks",
+                donateDaDesc: "One-time donation, any amount",
+                donatePpDesc: "Quick and simple, worldwide",
+                supportNote: "Donations do not include Premium perks. For Premium, use the 💎 Premium button."
             },
             ru: {
                 login: "Войти",
@@ -209,7 +337,35 @@
                 regDesc: "Открывает удобное диалоговое окно прямо внутри Discord. Заполни своё имя, возраст, страну, укажи игры через запятую и краткую информацию о себе, чтобы создать личную карточку.",
                 profDesc: "Выводит твой текущий игровой профиль в виде красивого эмбеда. Показывает установленный пол, описание, список активных игр и аватарку. Под карточкой доступна кнопка быстрых настроек для изменения любого параметра анкеты в один клик!",
                 searchDesc: "Глобальный поиск тиммейтов нового поколения. Cosmo мгновенно подберёт напарников, которые играют именно в твои игры. Никакого спама — только реальные игроки. Листай анкеты, ставь 💖 Like, пропускай через 👎 Skip и находи идеальную команду для катки в реальном времени!",
-                setDesc: "Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения."
+                setDesc: "Управление конфигурацией бота. Позволяет моментально изменить языковые настройки интерфейса Cosmo под твои предпочтения.",
+
+                navPremium: "Premium",
+                navSupport: "Поддержать",
+                premiumTitle: "Cosmo Premium",
+                premiumSubtitle: "Открой эксклюзивные функции и повысь приоритет в поиске!",
+                benefitPriorityTitle: "Приоритетный показ:",
+                benefitPriorityDesc: "Карточки Premium-пользователей показываются первыми в поиске.",
+                benefitBadgeTitle: "Эксклюзивный значок:",
+                benefitBadgeDesc: "Иконка Premium на твоей анкете.",
+                benefitLinksTitle: "Прямые ссылки:",
+                benefitLinksDesc: "Ссылка на Twitch / YouTube / Steam прямо в био.",
+                benefitColorTitle: "Кастомный цвет:",
+                benefitColorDesc: "Выбор любого цвета боковой полосы (HEX-код).",
+                popularBadge: "ПОПУЛЯРНО",
+                price4Days: "4 Дня",
+                price8Days: "8 Дней",
+                price12Days: "12 Дней",
+                buyBtn: "Купить",
+                premiumNote: "После оплаты Premium активируется автоматически на том Discord-аккаунте, под которым вы вошли на сайт. Пожалуйста, войдите перед покупкой.",
+                loginFirstAlert: "Сначала войдите через Discord, чтобы мы знали, кому начислить Premium!",
+                paymentNotConfigured: "Этот способ оплаты пока не настроен. Загляните позже!",
+
+                supportTitle: "Поддержать Cosmo",
+                supportSubtitle: "Нравится Cosmo? Помоги проекту оставаться на плаву — любая поддержка важна!",
+                donateBoostyDesc: "Ежемесячная поддержка с плюшками",
+                donateDaDesc: "Разовый донат на любую сумму",
+                donatePpDesc: "Быстро и просто, по всему миру",
+                supportNote: "Донат не включает привилегии Premium. Для Premium используйте кнопку 💎 Premium."
             },
             es: {
                 login: "Iniciar sesión",
@@ -221,7 +377,35 @@
                 regDesc: "Abre una ventana emergente en Discord. Completa tu nombre, edad, país, juegos (separados por comas) y una breve biografía para crear tu perfil.",
                 profDesc: "Muestra tu perfil de jugador en una tarjeta interactiva. Muestra tu género, biografía, juegos activos y avatar. ¡Incluye un botón de configuración rápida debajo para editar tu perfil en un clic!",
                 searchDesc: "Búsqueda global de compañeros de equipo de nueva generación. Cosmo encuentra al instante jugadores que juegan a tus mismos juegos. ¡Sin spam, solo usuarios reales!",
-                setDesc: "Menú de configuración del bot. Te permite cambiar al instante las preferencias de idioma de la interfaz en Discord."
+                setDesc: "Menú de configuración del bot. Te permite cambiar al instante las preferencias de idioma de la interfaz en Discord.",
+
+                navPremium: "Premium",
+                navSupport: "Apoyar",
+                premiumTitle: "Cosmo Premium",
+                premiumSubtitle: "¡Desbloquea funciones exclusivas y mejora tu posición en la búsqueda!",
+                benefitPriorityTitle: "Prioridad de búsqueda:",
+                benefitPriorityDesc: "Los perfiles Premium aparecen primero en los resultados.",
+                benefitBadgeTitle: "Insignia exclusiva:",
+                benefitBadgeDesc: "Un icono Premium en tu perfil.",
+                benefitLinksTitle: "Enlaces directos:",
+                benefitLinksDesc: "Añade un enlace de Twitch / YouTube / Steam directo en tu biografía.",
+                benefitColorTitle: "Color personalizado:",
+                benefitColorDesc: "Elige cualquier color de la barra lateral con un código HEX.",
+                popularBadge: "POPULAR",
+                price4Days: "4 Días",
+                price8Days: "8 Días",
+                price12Days: "12 Días",
+                buyBtn: "Comprar",
+                premiumNote: "Tras el pago, el Premium se activa automáticamente en la cuenta de Discord con la que iniciaste sesión. Inicia sesión antes de comprar.",
+                loginFirstAlert: "¡Inicia sesión con Discord primero, para saber a qué cuenta otorgar Premium!",
+                paymentNotConfigured: "Esta opción de pago aún no está configurada. ¡Vuelve pronto!",
+
+                supportTitle: "Apoya a Cosmo",
+                supportSubtitle: "¿Te gusta Cosmo? Ayuda a mantener el proyecto — ¡cada donación cuenta!",
+                donateBoostyDesc: "Apoyo mensual con beneficios",
+                donateDaDesc: "Donación única, cualquier cantidad",
+                donatePpDesc: "Rápido y sencillo, en todo el mundo",
+                supportNote: "Las donaciones no incluyen beneficios Premium. Para Premium, usa el botón 💎 Premium."
             }
         };
 
@@ -230,6 +414,34 @@
             document.getElementById('lang-menu').classList.toggle('hidden');
         }
 
+        // --- МОДАЛЬНЫЕ ОКНА (Premium / Support) ---
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Закрытие по клику на затемнённый фон (но не по самому окну)
+        function closeModalOnOverlay(event, modalId) {
+            if (event.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        // Закрытие по Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal('premium-modal');
+                closeModal('support-modal');
+            }
+        });
+
+        let currentLang = 'en';
+
         function setLanguage(lang) {
             document.getElementById('current-lang').innerText = lang.toUpperCase();
             localStorage.setItem('cosmo_lang', lang);
@@ -237,6 +449,7 @@
 
             const t = translations[lang];
             if (!t) return;
+            currentLang = lang;
 
             document.getElementById('txt-login').innerText = t.login;
             document.getElementById('txt-exit').innerText = t.exit;
@@ -250,6 +463,38 @@
             document.getElementById('txt-cmd-prof-desc').innerText = t.profDesc;
             document.getElementById('txt-cmd-search-desc').innerText = t.searchDesc;
             document.getElementById('txt-cmd-set-desc').innerText = t.setDesc;
+
+            // Кнопки в навбаре
+            document.getElementById('txt-nav-premium').innerText = t.navPremium;
+            document.getElementById('txt-nav-support').innerText = t.navSupport;
+
+            // Premium-модалка
+            document.getElementById('txt-premium-title').innerText = t.premiumTitle;
+            document.getElementById('txt-premium-subtitle').innerText = t.premiumSubtitle;
+            document.getElementById('txt-benefit-priority-title').innerText = t.benefitPriorityTitle;
+            document.getElementById('txt-benefit-priority-desc').innerText = t.benefitPriorityDesc;
+            document.getElementById('txt-benefit-badge-title').innerText = t.benefitBadgeTitle;
+            document.getElementById('txt-benefit-badge-desc').innerText = t.benefitBadgeDesc;
+            document.getElementById('txt-benefit-links-title').innerText = t.benefitLinksTitle;
+            document.getElementById('txt-benefit-links-desc').innerText = t.benefitLinksDesc;
+            document.getElementById('txt-benefit-color-title').innerText = t.benefitColorTitle;
+            document.getElementById('txt-benefit-color-desc').innerText = t.benefitColorDesc;
+            document.getElementById('txt-popular-badge').innerText = t.popularBadge;
+            document.getElementById('txt-price-4-days').innerText = t.price4Days;
+            document.getElementById('txt-price-8-days').innerText = t.price8Days;
+            document.getElementById('txt-price-12-days').innerText = t.price12Days;
+            document.getElementById('txt-buy-btn-1').innerText = t.buyBtn;
+            document.getElementById('txt-buy-btn-2').innerText = t.buyBtn;
+            document.getElementById('txt-buy-btn-3').innerText = t.buyBtn;
+            document.getElementById('txt-premium-note').innerText = t.premiumNote;
+
+            // Support / Donate модалка
+            document.getElementById('txt-support-title').innerText = t.supportTitle;
+            document.getElementById('txt-support-subtitle').innerText = t.supportSubtitle;
+            document.getElementById('txt-donate-boosty-desc').innerText = t.donateBoostyDesc;
+            document.getElementById('txt-donate-da-desc').innerText = t.donateDaDesc;
+            document.getElementById('txt-donate-pp-desc').innerText = t.donatePpDesc;
+            document.getElementById('txt-support-note').innerText = t.supportNote;
         }
 
         // Закрытие выпавшего меню при клике в случайное место
@@ -289,6 +534,7 @@
                         document.getElementById('login-btn').classList.add('hidden');
                         document.getElementById('user-profile').classList.remove('hidden');
                         document.getElementById('user-name').innerText = user.global_name || user.username;
+                        localStorage.setItem('discord_user_id', user.id);
 
                         const avatarUrl = user.avatar
                             ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
@@ -304,8 +550,40 @@
 
         function logout() {
             localStorage.removeItem('discord_token');
+            localStorage.removeItem('discord_user_id');
             document.getElementById('login-btn').classList.remove('hidden');
             document.getElementById('user-profile').classList.add('hidden');
+        }
+
+        // --- ПОКУПКА PREMIUM ---
+        // TODO: замените ссылки на реальные Stripe Payment Links (создаются в Stripe Dashboard без кода)
+        // Подробности — в сопроводительном сообщении.
+        const PREMIUM_PAYMENT_LINKS = {
+            4: "https://buy.stripe.com/REPLACE_WITH_4_DAYS_LINK",
+            8: "https://buy.stripe.com/REPLACE_WITH_8_DAYS_LINK",
+            12: "https://buy.stripe.com/REPLACE_WITH_12_DAYS_LINK"
+        };
+
+        function buyPremium(days) {
+            const discordId = localStorage.getItem('discord_user_id');
+
+            if (!discordId) {
+                alert(translations[currentLang].loginFirstAlert);
+                closeModal('premium-modal');
+                loginWithDiscord();
+                return;
+            }
+
+            const baseLink = PREMIUM_PAYMENT_LINKS[days];
+            if (!baseLink || baseLink.includes('REPLACE_WITH')) {
+                alert(translations[currentLang].paymentNotConfigured);
+                return;
+            }
+
+            // client_reference_id передаёт Discord ID покупателя в Stripe,
+            // чтобы вебхук на бэкенде знал, кому начислить Premium после оплаты
+            const url = `${baseLink}?client_reference_id=${discordId}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
 
         window.onload = () => {
