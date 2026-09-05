@@ -1,0 +1,9 @@
+{
+  "name": "cosmo-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@paddle/paddle-node-sdk": "^1.4.0"
+  }
+}
