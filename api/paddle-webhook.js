@@ -15,9 +15,9 @@ import { Paddle, EventName } from "@paddle/paddle-node-sdk";
 
 // Сопоставление Price ID (из Paddle Dashboard → Catalog → Products) с количеством дней Premium
 const PRICE_TO_DAYS = {
-    "pri_01m19a3jxscrcn28t7g6cz4817": 3,
-    "pri_01m19a54evbpxpqnaep0jf0e5x": 7,
-    "pri_01m19a7c2akfzej1a3phsejnba": 14,
+    "pri_01m1rzkktwmpgjpphp9vdwkp88": 3,
+    "pri_01m1rzmxcmhqb2cvjx8xbwse0q": 7,
+    "pri_01m1rzp8qmxbm2qfxtn0jpjvha": 14,
 };
 
 // Нужен "сырой" (не распарсенный) body для проверки подписи Paddle
