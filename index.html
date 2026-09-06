@@ -547,19 +547,19 @@
 
         // --- ПОКУПКА PREMIUM (Paddle — работает с продавцами из Израиля) ---
         // TODO: вставьте свой Client-side token из Paddle Dashboard → Developer Tools → Authentication
-        const PADDLE_CLIENT_TOKEN = "test_905c57e3f57fae988ce96641689";
+        const PADDLE_CLIENT_TOKEN = "live_a408c01cf6dfb78aa411ddf12d6";
 
         // TODO: вставьте Price ID из Paddle Dashboard → Catalog → Products (вида pri_xxxxxxxx)
         const PREMIUM_PADDLE_PRICE_IDS = {
-            3: "pri_01m19a3jxscrcn28t7g6cz4817",
-            7: "pri_01m19a54evbpxpqnaep0jf0e5x",
-            14: "pri_01m19a7c2akfzej1a3phsejnba"
+            3: "pri_01m1rzkktwmpgjpphp9vdwkp88",
+            7: "pri_01m1rzmxcmhqb2cvjx8xbwse0q",
+            14: "pri_01m1rzp8qmxbm2qfxtn0jpjvha"
         };
 
         let paddleReady = false;
         if (typeof Paddle !== "undefined") {
             // Смените на 'sandbox', пока тестируете интеграцию до одобрения аккаунта Paddle
-            Paddle.Environment.set("sandbox");
+            Paddle.Environment.set("production");
             if (!PADDLE_CLIENT_TOKEN.includes("REPLACE_WITH")) {
                 Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN });
                 paddleReady = true;
