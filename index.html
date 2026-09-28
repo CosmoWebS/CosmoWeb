@@ -224,20 +224,20 @@
 
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <div class="pricing-days" id="txt-price-4-days">3 Days</div>
-                    <div class="pricing-amount">$7</div>
-                    <button class="pricing-buy-btn" id="txt-buy-btn-1" onclick="buyPremium(3)">Buy</button>
+                    <div class="pricing-days" id="txt-price-4-days">7 Days</div>
+                    <div class="pricing-amount">$1.99</div>
+                    <button class="pricing-buy-btn" id="txt-buy-btn-1" onclick="buyPremium(7)">Buy</button>
                 </div>
                 <div class="pricing-card popular">
                     <div class="popular-badge" id="txt-popular-badge">POPULAR</div>
-                    <div class="pricing-days" id="txt-price-8-days">7 Days</div>
-                    <div class="pricing-amount">$12</div>
-                    <button class="pricing-buy-btn" id="txt-buy-btn-2" onclick="buyPremium(7)">Buy</button>
+                    <div class="pricing-days" id="txt-price-8-days">1 Month</div>
+                    <div class="pricing-amount">$4.99</div>
+                    <button class="pricing-buy-btn" id="txt-buy-btn-2" onclick="buyPremium(30)">Buy</button>
                 </div>
                 <div class="pricing-card">
-                    <div class="pricing-days" id="txt-price-12-days">14 Days</div>
-                    <div class="pricing-amount">$18</div>
-                    <button class="pricing-buy-btn" id="txt-buy-btn-3" onclick="buyPremium(14)">Buy</button>
+                    <div class="pricing-days" id="txt-price-12-days">3 Months</div>
+                    <div class="pricing-amount">$11.99</div>
+                    <button class="pricing-buy-btn" id="txt-buy-btn-3" onclick="buyPremium(90)">Buy</button>
                 </div>
             </div>
 
@@ -309,9 +309,9 @@
                 benefitColorTitle: "Custom Color:",
                 benefitColorDesc: "Choose any sidebar color via HEX code.",
                 popularBadge: "POPULAR",
-                price4Days: "3 Days",
-                price8Days: "7 Days",
-                price12Days: "14 Days",
+                price4Days: "7 Days",
+                price8Days: "1 Month",
+                price12Days: "3 Months",
                 buyBtn: "Buy",
                 premiumNote: "After payment, Premium is granted automatically to the Discord account you're logged in with. Please log in before purchasing.",
                 loginFirstAlert: "Please log in with Discord first, so we know which account to grant Premium to!",
@@ -348,9 +348,9 @@
                 benefitColorTitle: "Кастомный цвет:",
                 benefitColorDesc: "Выбор любого цвета боковой полосы (HEX-код).",
                 popularBadge: "ПОПУЛЯРНО",
-                price4Days: "3 Дня",
-                price8Days: "7 Дней",
-                price12Days: "14 Дней",
+                price4Days: "7 Дней",
+                price8Days: "1 Месяц",
+                price12Days: "3 Месяца",
                 buyBtn: "Купить",
                 premiumNote: "После оплаты Premium активируется автоматически на том Discord-аккаунте, под которым вы вошли на сайт. Пожалуйста, войдите перед покупкой.",
                 loginFirstAlert: "Сначала войдите через Discord, чтобы мы знали, кому начислить Premium!",
@@ -387,9 +387,9 @@
                 benefitColorTitle: "Color personalizado:",
                 benefitColorDesc: "Elige cualquier color de la barra lateral con un código HEX.",
                 popularBadge: "POPULAR",
-                price4Days: "3 Días",
-                price8Days: "7 Días",
-                price12Days: "14 Días",
+                price4Days: "7 Días",
+                price8Days: "1 Mes",
+                price12Days: "3 Meses",
                 buyBtn: "Comprar",
                 premiumNote: "Tras el pago, el Premium se activa automáticamente en la cuenta de Discord con la que iniciaste sesión. Inicia sesión antes de comprar.",
                 loginFirstAlert: "¡Inicia sesión con Discord primero, para saber a qué cuenta otorgar Premium!",
@@ -554,9 +554,9 @@
 
         // TODO: вставьте Price ID из Paddle Dashboard → Catalog → Products (вида pri_xxxxxxxx)
         const PREMIUM_PADDLE_PRICE_IDS = {
-            3: "pri_01m1rzkktwmpgjpphp9vdwkp88",
-            7: "pri_01m1rzmxcmhqb2cvjx8xbwse0q",
-            14: "pri_01m1rzp8qmxbm2qfxtn0jpjvha"
+            7: "pri_01m3d52wbntngkq3m7cgj8vj5d",
+            30: "pri_01m3d57f5mewe78e43v48rx3bg",
+            90: "pri_01m3d5cwrgc5f8crz6f681jp74"
         };
 
         let paddleReady = false;
